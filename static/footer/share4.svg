@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="40px" viewBox="0 0 41 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>Facebook</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01_AXON_Family_Office_Home" transform="translate(-1792.000000, -3442.000000)">
+            <g id="Footer" transform="translate(98.000000, 3270.000000)">
+                <g id="Right_Contents" transform="translate(1471.000000, 50.000000)">
+                    <g id="Socials" transform="translate(0.000000, 122.000000)">
+                        <g id="Facebook" transform="translate(222.937255, 0.000000)">
+                            <path d="M1,20 C1,8.95430446 9.95430446,0 21,0 C32.0456955,0 41,8.95430446 41,20 C41,31.0456955 32.0456955,40 21,40 C9.95430446,40 1,31.0456955 1,20 Z" fill="#142E4F"></path>
+                            <path d="M22.5137952,31.303553 L22.5137952,20.1504707 L25.856678,20.1504707 L26.2996821,16.3070568 L22.5137952,16.3070568 L22.5194748,14.3833911 C22.5194748,13.3809696 22.6228897,12.8438492 24.1861832,12.8438492 L26.2760174,12.8438492 L26.2760174,9 L22.9326613,9 C18.916753,9 17.5032574,10.8644693 17.5032574,13.9999203 L17.5032574,16.307492 L15,16.307492 L15,20.150906 L17.5032574,20.150906 L17.5032574,31.303553 L22.5137952,31.303553 Z" id="Path" stroke="#FFFFFF"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

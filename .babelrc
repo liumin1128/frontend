@@ -1,0 +1,20 @@
+{
+  "presets": [
+    "@babel/env",
+    "next/babel"
+  ],
+  "plugins": [
+    "@babel/transform-runtime",
+    "transform-decorators-legacy",
+    ["lodash", { "id": "recompact" }],
+    ["module-resolver", { "alias": { "@": "./" } }]
+  ],
+  "env": {
+    "production": {
+      "presets": ["minify"],
+      "plugins": [
+        "transform-remove-console"
+      ]
+    }
+  }
+}
