@@ -90,7 +90,13 @@ export default class Index extends PureComponent {
       if (!values[day]) {
         values[day] = [];
       }
-      values[day].push(idx);
+      const index = values[day].findIndex(i => i > idx);
+      // console.log(index);
+      if (index === -1) {
+        values[day].push(idx);
+      } else {
+        values[day].splice(index, 0, idx);
+      }
     }
 
     this.setState({
@@ -147,8 +153,19 @@ export default class Index extends PureComponent {
       for (let j = 0; j <= y1 - y0; j += 1) {
         // values[startX].push();
         if (!values[startX]) values[startX] = [];
-        const index = values[startX].findIndex(d => d === y0 + j);
-        if (index === -1) values[startX].push(y0 + j);
+        const isSelected = values[startX].findIndex(d => d === y0 + j);
+        if (isSelected === -1) {
+          // console.log(index);
+          const value = y0 + j;
+          const index = values[startX].findIndex(d => d > value);
+
+          if (index === -1) {
+            values[startX].push(value);
+          } else {
+            values[startX].splice(index, 0, value);
+          }
+          values[startX].push();
+        }
       }
     }
 
