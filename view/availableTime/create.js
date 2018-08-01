@@ -71,6 +71,9 @@ export default class CreateArticle extends PureComponent {
   editor = createRef()
 
   validate = (values) => {
+    console.log('values');
+    console.log(values);
+
     const errors = {};
     if (!values.title) {
       errors.title = '文章标题不能留空';
@@ -78,6 +81,12 @@ export default class CreateArticle extends PureComponent {
     if (!values.tags) {
       errors.tags = '至少填写一个标签';
     }
+    Object.keys(values).map((i) => {
+      console.log(i);
+      if (!values[i]) {
+        errors[i] = '不可以不填哦';
+      }
+    });
     return errors;
   }
 
@@ -94,30 +103,22 @@ export default class CreateArticle extends PureComponent {
         {(createArticle, { loading, error, data = {} }) => {
           // if (loading) return 'Loading...';
           // if (error) return `Error! ${error.message}`;
-          const onSubmit = async ({ title, tags }) => {
-            const html = this.editor.getHtml();
-            const json = this.editor.getJson();
-            const input = {
-              content: html,
-              rawData: JSON.stringify(json),
-              rawDataType: 'draft',
-              tags: tags.split(' '),
-              title,
-            };
-            try {
-              const result = await createArticle({
-                variables: { input },
-                refetchQueries: ['ArticleList'],
-              });
-              console.log('result');
-              console.log(result);
-              Snackbar.success('发布成功！');
-              Router.push('/article');
-            } catch (err) {
-              console.log('err');
-              console.log(err);
-              // Snackbar.error('文章发布失败');
-            }
+          const onSubmit = async (values) => {
+
+            // try {
+            //   const result = await createArticle({
+            //     variables: { input },
+            //     refetchQueries: ['ArticleList'],
+            //   });
+            //   console.log('result');
+            //   console.log(result);
+            //   Snackbar.success('发布成功！');
+            //   Router.push('/article');
+            // } catch (err) {
+            //   console.log('err');
+            //   console.log(err);
+            //   // Snackbar.error('文章发布失败');
+            // }
           };
           return (
             <Fragment>
@@ -138,6 +139,7 @@ export default class CreateArticle extends PureComponent {
                         {
                           formKeys.map(i => (
                             <Field
+                              key={i.key}
                               name={i.key}
                               label={i.label}
                               component={i.component}
