@@ -94,6 +94,28 @@ const formKeys = [
     },
   },
   {
+    key: 'timeRange',
+    label: '时间片段',
+    props: {
+      select: true,
+      SelectProps: {
+        native: true,
+      },
+      children: [
+        { value: 60, lable: '一个小时' },
+        { value: 30, lable: '30分钟' },
+        { value: 15, lable: '15分钟' },
+        { value: 5, lable: '5分钟' },
+      ].map((i) => {
+        return (
+          <option key={i.value} value={i.value}>
+            {i.lable}
+          </option>
+        );
+      }),
+    },
+  },
+  {
     key: 'multi',
     label: '允许多名访客同时会面吗',
     props: {
@@ -128,6 +150,7 @@ const initialValue = {
   days: 7,
   startOfDay: 8,
   endOfDay: 17,
+  timeRange: 30,
   multi: true,
 };
 
@@ -137,19 +160,11 @@ export default class CreateArticle extends PureComponent {
   editor = createRef()
 
   validate = (values) => {
-    console.log('values');
-    console.log(values);
-
     const errors = {};
     if (!values.title) {
       errors.title = '标题不可以不填哦';
     }
-    // Object.keys(values).map((i) => {
-    //   console.log(i);
-    //   if (!values[i]) {
-    //     errors[i] = '不可以不填哦';
-    //   }
-    // });
+
     return errors;
   }
 
@@ -198,7 +213,7 @@ export default class CreateArticle extends PureComponent {
                   <AppBar position="static" className={classes.appbar}>
                     <Toolbar>
                       <Typography variant="title" color="inherit" className={classes.flex}>
-                    设置可预订时间表
+                        设置可预订时间表
                       </Typography>
                     </Toolbar>
                   </AppBar>

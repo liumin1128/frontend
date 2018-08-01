@@ -46,19 +46,14 @@ const styles = theme => ({
   },
 });
 
-const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-
-const startday = 1;
-const endday = 20;
-
-const Interval = 60;
-
-
 @withStyles(styles)
 export default class Index extends PureComponent {
   state = {
+    // {days: 7, startOfDay: 8, endOfDay: 17, multi: true, title: "1212121"},
     // days: list.map(i => ({ key: i, label: `${i} 七月`, active: false })),
-    days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    days: new Array(7)
+      .fill('x')
+      .map((i, index) => index),
     // type: 'day',
     type: '60min',
     // type: '30min',
@@ -68,6 +63,8 @@ export default class Index extends PureComponent {
     },
 
     xyTemp: {},
+
+    timeRange: 60,
   }
 
   onSelect = ({ day, start, end, idx, active }) => {
@@ -177,12 +174,12 @@ export default class Index extends PureComponent {
   }
 
   render() {
-    const { days, type, values } = this.state;
-    const { classes } = this.props;
+    const { type, values } = this.state;
+    const { classes, days: _days, timeRange } = this.props;
 
-    // 开始秒
-
-    const min = 60;
+    const days = new Array(_days)
+      .fill('x')
+      .map((i, index) => index);
 
     return (
       <Fragment>
@@ -214,9 +211,9 @@ export default class Index extends PureComponent {
             default:
               const temp = [];
               // 最小时间颗粒
-              const interval = min * 60;
+              const interval = timeRange * 60;
               // 填充最小时间颗粒
-              for (let i = 0; i < 60 * 24 / min; i += 1) {
+              for (let i = 0; i < 60 * 24 / timeRange; i += 1) {
                 // 最小时间颗粒的起始值
                 const start = i * interval;
                 // 最小时间颗粒的结束值
