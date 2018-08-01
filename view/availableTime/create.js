@@ -22,7 +22,6 @@ const styles = theme => ({
   root: {
     maxWidth: 700,
     margin: '0 auto',
-    marginTop: 32,
   },
   appbar: {
     borderRadius: 5,
@@ -203,6 +202,7 @@ export default class CreateArticle extends PureComponent {
                       </Typography>
                     </Toolbar>
                   </AppBar>
+                  <br />
                   <Form
                     onSubmit={onSubmit}
                     initialValues={initialValue}
