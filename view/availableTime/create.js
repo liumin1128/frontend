@@ -9,7 +9,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@/components/snackbar';
 import TextField from '@/components/form/textField';
-import Select from '@/components/form/select';
 import { CREATE_AVAILABLETIME } from '@/graphql/book';
 import nossr from '@/hoc/nossr';
 import { getStorage } from '@/utils/store';
@@ -32,38 +31,98 @@ const formKeys = [
   {
     key: 'title',
     label: '一个醒目的标题',
-    component: TextField,
   },
   {
     key: 'days',
     label: '最近几天的空余时间',
-    component: TextField,
+    props: {
+      select: true,
+      SelectProps: {
+        native: true,
+      },
+      children: new Array(15)
+        .fill('x')
+        .map((i, index) => index)
+        .map(i => (
+          <option key={i} value={i}>
+            {i}
+          </option>
+        )),
+    },
   },
   {
     key: 'startOfDay',
     label: '每日最早几点',
-    component: TextField,
+    props: {
+      select: true,
+      SelectProps: {
+        native: true,
+      },
+      children: new Array(24)
+        .fill('x')
+        .map((i, index) => index)
+        .map(i => (
+          <option key={i} value={i}>
+            {i}
+          </option>
+        )),
+    },
   },
   {
     key: 'endOfDay',
     label: '每日最晚几点',
-    component: TextField,
+    props: {
+      select: true,
+      SelectProps: {
+        native: true,
+      },
+      children: new Array(24)
+        .fill('x')
+        .map((i, index) => index)
+        .map(i => (
+          <option key={i} value={i}>
+            {i}
+          </option>
+        )),
+    },
   },
   {
     key: 'multi',
     label: '允许多名访客同时会面吗',
-    component: TextField,
+    props: {
+      select: true,
+      SelectProps: {
+        native: true,
+      },
+      children: [
+        { value: true, lable: '是' },
+        { value: false, lable: '否' },
+      ].map((i) => {
+        return (
+          <option key={i.value} value={i.value}>
+            {i.lable}
+          </option>
+        );
+      }),
+    },
+
   },
   {
     key: 'message',
     label: '给访客的留言',
-    component: TextField,
     props: {
       multiline: true,
       rows: 4,
     },
   },
 ];
+
+const initialValue = {
+  days: 7,
+  startOfDay: 8,
+  endOfDay: 17,
+  multi: true,
+};
 
 @withStyles(styles)
 @nossr
@@ -129,7 +188,7 @@ export default class CreateArticle extends PureComponent {
                 <CardContent>
                   <Form
                     onSubmit={onSubmit}
-                      // initialValues={initialValue}
+                    initialValues={initialValue}
                     validate={this.validate}
                     render={({ handleSubmit, reset, submitting, pristine, change, values }) => (
                       <form id="createArticleForm" onSubmit={handleSubmit}>
@@ -140,7 +199,7 @@ export default class CreateArticle extends PureComponent {
                               key={i.key}
                               name={i.key}
                               label={i.label}
-                              component={i.component}
+                              component={TextField}
                               type="text"
                               margin="normal"
                               fullWidth
