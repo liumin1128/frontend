@@ -9,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@/components/snackbar';
 import TextField from '@/components/form/textField';
+import Select from '@/components/form/select';
 import { CREATE_AVAILABLETIME } from '@/graphql/book';
 import nossr from '@/hoc/nossr';
 import { getStorage } from '@/utils/store';
@@ -27,6 +28,43 @@ const styles = theme => ({
   },
 });
 
+const formKeys = [
+  {
+    key: 'title',
+    label: '一个醒目的标题',
+    component: TextField,
+  },
+  {
+    key: 'days',
+    label: '最近几天的空余时间',
+    component: TextField,
+  },
+  {
+    key: 'startOfDay',
+    label: '每日最早几点',
+    component: TextField,
+  },
+  {
+    key: 'endOfDay',
+    label: '每日最晚几点',
+    component: TextField,
+  },
+  {
+    key: 'multi',
+    label: '允许多名访客同时会面吗',
+    component: TextField,
+  },
+  {
+    key: 'message',
+    label: '给访客的留言',
+    component: TextField,
+    props: {
+      multiline: true,
+      rows: 4,
+    },
+  },
+];
+
 @withStyles(styles)
 @nossr
 export default class CreateArticle extends PureComponent {
@@ -44,7 +82,7 @@ export default class CreateArticle extends PureComponent {
   }
 
   render() {
-    const user = getStorage(STORE_USER_KEY);
+    // const user = getStorage(STORE_USER_KEY);
     // if (!user || !user.token) {
     //   return '尚未登录';
     // }
@@ -96,67 +134,28 @@ export default class CreateArticle extends PureComponent {
                     validate={this.validate}
                     render={({ handleSubmit, reset, submitting, pristine, change, values }) => (
                       <form id="createArticleForm" onSubmit={handleSubmit}>
-                        <Field
-                          name="days"
-                          label="公开最近几天的空余时间"
-                          type="text"
-                          component={TextField}
-                          margin="normal"
-                          fullWidth
-                        />
 
-                        <Field
-                          name="startOfDay"
-                          label="每日最早几点"
-                          type="text"
-                          component={TextField}
-                          margin="normal"
-                          fullWidth
-                        />
+                        {
+                          formKeys.map(i => (
+                            <Field
+                              name={i.key}
+                              label={i.label}
+                              component={i.component}
+                              type="text"
+                              margin="normal"
+                              fullWidth
+                            />
+                          ))
+                        }
 
-                        <Field
-                          name="endOfDay"
-                          label="每日最晚几点"
-                          type="text"
-                          component={TextField}
-                          margin="normal"
-                          fullWidth
-                        />
-
-                        <Field
-                          name="minute"
-                          label="时间片段精确到多少分钟"
-                          type="text"
-                          component={TextField}
-                          margin="normal"
-                          fullWidth
-                        />
-
-                        <Field
-                          name="minute"
-                          label="允许多名访客同时会面吗"
-                          type="text"
-                          component={TextField}
-                          margin="normal"
-                          fullWidth
-                        />
-
-                        <Field
-                          name="message"
-                          label="给访客的留言"
-                          type="text"
-                          multiline
-                          rows="4"
-                          component={TextField}
-                          margin="normal"
-                          fullWidth
-                        />
-
-
-                        <Button className={classes.submitButton} variant="contained" color="primary">
+                        <Button
+                          type="submit"
+                          variant="contained"
+                          color="primary"
+                          className={classes.submitButton}
+                        >
                           我填好了，选择时间段吧
                         </Button>
-
 
                       </form>
                     )}
