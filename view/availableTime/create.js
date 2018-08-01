@@ -76,17 +76,14 @@ export default class CreateArticle extends PureComponent {
 
     const errors = {};
     if (!values.title) {
-      errors.title = '文章标题不能留空';
+      errors.title = '标题不可以不填哦';
     }
-    if (!values.tags) {
-      errors.tags = '至少填写一个标签';
-    }
-    Object.keys(values).map((i) => {
-      console.log(i);
-      if (!values[i]) {
-        errors[i] = '不可以不填哦';
-      }
-    });
+    // Object.keys(values).map((i) => {
+    //   console.log(i);
+    //   if (!values[i]) {
+    //     errors[i] = '不可以不填哦';
+    //   }
+    // });
     return errors;
   }
 
@@ -104,6 +101,7 @@ export default class CreateArticle extends PureComponent {
           // if (loading) return 'Loading...';
           // if (error) return `Error! ${error.message}`;
           const onSubmit = async (values) => {
+            console.log(values);
 
             // try {
             //   const result = await createArticle({
@@ -146,6 +144,7 @@ export default class CreateArticle extends PureComponent {
                               type="text"
                               margin="normal"
                               fullWidth
+                              {...i.props}
                             />
                           ))
                         }
