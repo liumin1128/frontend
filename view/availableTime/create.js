@@ -1,12 +1,15 @@
 import React, { PureComponent, Fragment, createRef } from 'react';
 import { Mutation } from 'react-apollo';
 import Head from 'next/head';
+import AppBar from '@material-ui/core/AppBar';
 import { withStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
 import { Form, Field } from 'react-final-form';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import Snackbar from '@/components/snackbar';
 import TextField from '@/components/form/textField';
 import { CREATE_AVAILABLETIME } from '@/graphql/book';
@@ -19,11 +22,16 @@ const styles = theme => ({
   root: {
     maxWidth: 700,
     margin: '0 auto',
+    marginTop: 32,
+  },
+  appbar: {
+    borderRadius: 5,
   },
   submitButton: {
     marginTop: 16,
     margin: '0 auto',
     display: 'block',
+    padding: '16px 32px',
   },
 });
 
@@ -185,7 +193,16 @@ export default class CreateArticle extends PureComponent {
 
               <Card className={classes.root}>
 
+
                 <CardContent>
+
+                  <AppBar position="static" className={classes.appbar}>
+                    <Toolbar>
+                      <Typography variant="title" color="inherit" className={classes.flex}>
+                    设置可预订时间表
+                      </Typography>
+                    </Toolbar>
+                  </AppBar>
                   <Form
                     onSubmit={onSubmit}
                     initialValues={initialValue}
