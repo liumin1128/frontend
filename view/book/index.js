@@ -290,9 +290,6 @@ export default class Index extends PureComponent {
           }
         })()}
 
-        <pre>
-          {JSON.stringify(days, 0, 2)}
-        </pre>
       </Fragment>
     );
   }
