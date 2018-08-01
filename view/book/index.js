@@ -175,7 +175,7 @@ export default class Index extends PureComponent {
 
   render() {
     const { type, values } = this.state;
-    const { classes, days: _days, timeRange } = this.props;
+    const { classes, days: _days, timeRange, startOfDay, endOfDay } = this.props;
 
     const days = new Array(_days)
       .fill('x')
@@ -218,13 +218,17 @@ export default class Index extends PureComponent {
                 const start = i * interval;
                 // 最小时间颗粒的结束值
                 const end = start + interval;
-                temp.push({
-                  idx: i,
-                  // 显示字符
-                  label: i,
-                  start,
-                  end,
-                });
+
+                if (start >= startOfDay * 60 * 60 && end <= (endOfDay + 1) * 60 * 60) {
+                  // 如果时间点在可选范围以外，则不填充
+                  temp.push({
+                    idx: i,
+                    // 显示字符
+                    label: i,
+                    start,
+                    end,
+                  });
+                }
               }
 
 
