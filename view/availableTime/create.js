@@ -184,6 +184,8 @@ export default class CreateArticle extends PureComponent {
           const onSubmit = async (values) => {
             console.log(values);
 
+            Router.push('/book/booking');
+
             // try {
             //   const result = await createArticle({
             //     variables: { input },
@@ -213,7 +215,7 @@ export default class CreateArticle extends PureComponent {
                   <AppBar position="static" className={classes.appbar}>
                     <Toolbar>
                       <Typography variant="title" color="inherit" className={classes.flex}>
-                        设置可预订时间表
+                        设置
                       </Typography>
                     </Toolbar>
                   </AppBar>
@@ -245,6 +247,8 @@ export default class CreateArticle extends PureComponent {
                           variant="contained"
                           color="primary"
                           className={classes.submitButton}
+                          // onClick={() => {
+                          // }}
                         >
                           我填好了，选择时间段吧
                         </Button>
