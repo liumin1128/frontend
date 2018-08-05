@@ -180,8 +180,8 @@ export default class Index extends PureComponent {
     const { type, values } = this.state;
     const { classes, setting = {} } = this.props;
 
-    console.log('setting');
-    console.log(setting);
+    // console.log('setting');
+    // console.log(setting);
 
     const { days: _days, timeRange, startOfDay, endOfDay } = setting;
 

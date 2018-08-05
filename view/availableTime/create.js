@@ -177,7 +177,11 @@ export default class CreateArticle extends PureComponent {
     //   return '尚未登录';
     // }
 
-    const { classes } = this.props;
+    const { classes, book = {} } = this.props;
+
+    const formData = book.setting ? {
+      ...book.setting,
+    } : initialValue;
 
     return (
       <Mutation mutation={CREATE_AVAILABLETIME}>
@@ -215,6 +219,8 @@ export default class CreateArticle extends PureComponent {
             //   // Snackbar.error('文章发布失败');
             // }
           };
+
+
           return (
             <Fragment>
               <Head>
@@ -236,7 +242,8 @@ export default class CreateArticle extends PureComponent {
                   <br />
                   <Form
                     onSubmit={onSubmit}
-                    initialValues={initialValue}
+                    initialValues={formData}
+                    // values={formData}
                     validate={this.validate}
                     render={({ handleSubmit, reset, submitting, pristine, change, values }) => (
                       <form id="createArticleForm" onSubmit={handleSubmit}>
@@ -251,6 +258,7 @@ export default class CreateArticle extends PureComponent {
                               type="text"
                               margin="normal"
                               fullWidth
+                              value={formData[i.key]}
                               {...i.props}
                             />
                           ))
