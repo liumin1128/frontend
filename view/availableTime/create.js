@@ -45,6 +45,7 @@ const formKeys = [
     label: '最近几天的空余时间',
     props: {
       select: true,
+      type: 'number',
       SelectProps: {
         native: true,
       },
@@ -184,10 +185,17 @@ export default class CreateArticle extends PureComponent {
           // if (loading) return 'Loading...';
           // if (error) return `Error! ${error.message}`;
           const onSubmit = async (values) => {
-            console.log(values);
+            const params = values;
+
+            // 将部分参数转为整形
+            ['days', 'startOfDay', 'endOfDay', 'timeRange'].map((i) => {
+              if (params[i]) {
+                params[i] = parseInt(params[i], 0);
+              }
+            });
 
             const { dispatch } = this.props;
-            dispatch({ type: 'book/save', payload: { setting: values } });
+            dispatch({ type: 'book/save', payload: { setting: params } });
 
             Router.push('/book/booking');
 

@@ -48,7 +48,7 @@ const styles = theme => ({
   },
 });
 
-@connect(({ book }) => ({ ...book.setting }))
+@connect(({ book }) => ({ ...book }))
 @withStyles(styles)
 export default class Index extends PureComponent {
   state = {
@@ -178,7 +178,12 @@ export default class Index extends PureComponent {
 
   render() {
     const { type, values } = this.state;
-    const { classes, days: _days, timeRange, startOfDay, endOfDay } = this.props;
+    const { classes, setting = {} } = this.props;
+
+    console.log('setting');
+    console.log(setting);
+
+    const { days: _days, timeRange, startOfDay, endOfDay } = setting;
 
     const days = new Array(_days)
       .fill('x')
