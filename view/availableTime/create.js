@@ -22,10 +22,10 @@ import { STORE_USER_KEY } from '@/constants/base';
 const styles = theme => ({
   root: {
     maxWidth: 700,
-    margin: '0 auto',
+    margin: '32px auto',
   },
   appbar: {
-    borderRadius: 5,
+    // borderRadius: 5,
   },
   submitButton: {
     marginTop: 16,
@@ -223,23 +223,24 @@ export default class CreateArticle extends PureComponent {
 
           return (
             <Fragment>
+
               <Head>
                 <link href="/static/draft-editor.css" rel="stylesheet" />
               </Head>
+
+              <AppBar position="static" className={classes.appbar}>
+                <Toolbar>
+                  <Typography variant="title" color="inherit" className={classes.flex}>
+                  设置
+                  </Typography>
+                </Toolbar>
+              </AppBar>
 
               <Card className={classes.root}>
 
 
                 <CardContent>
 
-                  <AppBar position="static" className={classes.appbar}>
-                    <Toolbar>
-                      <Typography variant="title" color="inherit" className={classes.flex}>
-                        设置
-                      </Typography>
-                    </Toolbar>
-                  </AppBar>
-                  <br />
                   <Form
                     onSubmit={onSubmit}
                     initialValues={formData}
