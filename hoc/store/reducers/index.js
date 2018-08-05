@@ -7,9 +7,12 @@ const reducers = reducerFactory([
     namespace: 'global',
     initState: { locale: 'en' },
   },
+  {
+    namespace: 'book',
+    initState: { },
+  },
 ]);
 
 export default combineReducers({
   ...reducers,
 });
-
