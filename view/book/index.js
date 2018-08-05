@@ -1,4 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
+import { connect } from 'react-redux';
+
 import moment from 'moment';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { withStyles } from '@material-ui/core/styles';
@@ -46,14 +48,15 @@ const styles = theme => ({
   },
 });
 
+@connect(({ book }) => ({ ...book.setting }))
 @withStyles(styles)
 export default class Index extends PureComponent {
   state = {
     // {days: 7, startOfDay: 8, endOfDay: 17, multi: true, title: "1212121"},
     // days: list.map(i => ({ key: i, label: `${i} 七月`, active: false })),
-    days: new Array(7)
-      .fill('x')
-      .map((i, index) => index),
+    // days: new Array(7)
+    //   .fill('x')
+    //   .map((i, index) => index),
     // type: 'day',
     type: '60min',
     // type: '30min',
@@ -64,7 +67,7 @@ export default class Index extends PureComponent {
 
     xyTemp: {},
 
-    timeRange: 60,
+    // timeRange: 60,
   }
 
   onSelect = ({ day, start, end, idx, active }) => {

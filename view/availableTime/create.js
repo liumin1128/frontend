@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment, createRef } from 'react';
 import { Mutation } from 'react-apollo';
+import { connect } from 'react-redux';
 import Head from 'next/head';
 import AppBar from '@material-ui/core/AppBar';
 import { withStyles } from '@material-ui/core/styles';
@@ -154,6 +155,7 @@ const initialValue = {
   multi: true,
 };
 
+@connect(({ book }) => ({ book }))
 @withStyles(styles)
 @nossr
 export default class CreateArticle extends PureComponent {
@@ -183,6 +185,9 @@ export default class CreateArticle extends PureComponent {
           // if (error) return `Error! ${error.message}`;
           const onSubmit = async (values) => {
             console.log(values);
+
+            const { dispatch } = this.props;
+            dispatch({ type: 'book/save', payload: { setting: values } });
 
             Router.push('/book/booking');
 
