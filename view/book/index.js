@@ -19,7 +19,7 @@ const styles = theme => ({
     // width: `${100 / 15}%`,
     display: 'inline-block',
     textAlign: 'center',
-    padding: 2,
+    // padding: 2,
     maxWidth: 100,
   },
   item: {
@@ -31,20 +31,21 @@ const styles = theme => ({
     // background: 'green',
     // transition: '1s',
     // background: '#f1f1f1',
-    margin: 2,
+    // margin: 2,
     // borderRadius: 2,
     fontSize: 10,
     color: '#999',
     '&:hover': {
-      // boxShadow: '0 0 3px #666',
-      background: '#f2f2f2',
+      boxShadow: '0 0 0px 1px #ccc',
+      zIndex: 1,
+      // background: '#f2f2f2',
 
     },
   },
   active: {
     background: '#00B9F7',
     // transition: 'none',
-    color: '#333',
+    color: '#fff',
   },
   ripple: {
     background: '#00B9F7',
@@ -280,12 +281,12 @@ export default class Index extends PureComponent {
                                 },
                               }}
                               onMouseDown={() => {
-                                // console.log(dayIndex, timeIndex);
-                                this.onMutiSelectStart(dayIndex, timeIndex);
+                                // console.log(dayIndex, j.idx);
+                                this.onMutiSelectStart(dayIndex, j.idx);
                               }}
                               onMouseUp={() => {
-                                // console.log(dayIndex, timeIndex);
-                                this.onMutiSelectEnd(dayIndex, timeIndex);
+                                // console.log(dayIndex, j.idx);
+                                this.onMutiSelectEnd(dayIndex, j.idx);
                               }}
                             >
                               {
