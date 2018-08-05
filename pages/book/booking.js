@@ -14,7 +14,7 @@ import Book from '@/view/book';
 const styles = theme => ({
   root: {
     maxWidth: 700,
-    margin: '32px auto',
+    margin: '92px auto 32px',
   },
   appbar: {
     // borderRadius: 5,
@@ -39,7 +39,7 @@ export default class Index extends PureComponent {
     return (
       <Fragment>
 
-        <AppBar position="static" className={classes.appbar}>
+        <AppBar position="fixed" className={classes.appbar}>
 
           <Toolbar>
             <IconButton

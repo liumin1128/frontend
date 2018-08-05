@@ -16,10 +16,11 @@ const styles = theme => ({
     // border: '1px red solid',
   },
   day: {
-    width: `${100 / 15}%`,
+    // width: `${100 / 15}%`,
     display: 'inline-block',
     textAlign: 'center',
     padding: 2,
+    maxWidth: 100,
   },
   item: {
     display: 'inline-block',
@@ -29,13 +30,15 @@ const styles = theme => ({
     height: 60,
     // background: 'green',
     // transition: '1s',
-    background: '#f1f1f1',
+    // background: '#f1f1f1',
     margin: 2,
     // borderRadius: 2,
     fontSize: 10,
     color: '#999',
     '&:hover': {
-      boxShadow: '0 0 1px #333',
+      // boxShadow: '0 0 3px #666',
+      background: '#f2f2f2',
+
     },
   },
   active: {
@@ -244,7 +247,13 @@ export default class Index extends PureComponent {
                 <div className={classes.container}>
                   {
                     days.map((i, dayIndex) => (
-                      <div className={classes.day}>
+                      <div
+                        style={{
+                          // width: 100
+                          width: `${100 / _days}%`,
+                        }}
+                        className={classes.day}
+                      >
                         {i}
                         {' '}
                         日
