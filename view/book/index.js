@@ -35,9 +35,12 @@ const styles = theme => ({
     // borderRadius: 2,
     fontSize: 10,
     color: '#999',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
     '&:hover': {
       boxShadow: '0 0 0px 1px #ccc',
       zIndex: 1,
+      boxSizing: 'border-box',
       // background: '#f2f2f2',
 
     },
