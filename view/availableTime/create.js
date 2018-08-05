@@ -194,6 +194,7 @@ export default class CreateArticle extends PureComponent {
               }
             });
 
+            // 将参数存进redux
             const { dispatch } = this.props;
             dispatch({ type: 'book/save', payload: { setting: params } });
 
