@@ -78,7 +78,7 @@ export default class Index extends PureComponent {
     // type: '30min',
     // type: '15min',
     values: {
-      1531497600: [7],
+      // 1531497600: [7],
     },
 
     xyTemp: {},
@@ -164,7 +164,7 @@ export default class Index extends PureComponent {
 
     // 在一个二维循环中对数值进行操作
     for (let i = 0; i <= x1 - x0; i += 1) {
-      const startX = parseInt(moment().add(x0 + i, 'days').startOf('day').format('X'), 0);
+      const startX = moment().add(x0 + i, 'days').startOf('day').format('YYYY-MM-DD');
       for (let j = 0; j <= y1 - y0; j += 1) {
         // values[startX].push();
         if (!values[startX]) values[startX] = [];
@@ -304,7 +304,7 @@ export default class Index extends PureComponent {
                         {temp.map((j, timeIndex) => {
                           // console.log(values);
 
-                          const dayX = parseInt(moment().add(dayIndex, 'days').startOf('day').format('X'), 0);
+                          const dayX = moment().add(dayIndex, 'days').startOf('day').format('YYYY-MM-DD');
 
 
                           const valueList = values[dayX] || [];
