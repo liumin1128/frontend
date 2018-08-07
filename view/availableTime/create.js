@@ -1,6 +1,7 @@
 import React, { PureComponent, Fragment, createRef } from 'react';
 import { Mutation } from 'react-apollo';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import Head from 'next/head';
 import AppBar from '@material-ui/core/AppBar';
 import { withStyles } from '@material-ui/core/styles';
@@ -40,27 +41,41 @@ const formKeys = [
     key: 'title',
     label: '一个醒目的标题',
   },
+  // {
+  //   key: 'days',
+  //   label: '最近几天的空余时间',
+  //   props: {
+  //     select: true,
+  //     type: 'number',
+  //     SelectProps: {
+  //       native: true,
+  //     },
+  //     children: new Array(15)
+  //       .fill('x')
+  //       .map((i, index) => index)
+  //       .map(i => (
+  //         <option key={i} value={i}>
+  //           {i}
+  //         </option>
+  //       )),
+  //   },
+  // },
   {
-    key: 'days',
-    label: '最近几天的空余时间',
+    key: 'startOfDay',
+    label: '计划开始日期',
     props: {
-      select: true,
-      type: 'number',
-      SelectProps: {
-        native: true,
-      },
-      children: new Array(15)
-        .fill('x')
-        .map((i, index) => index)
-        .map(i => (
-          <option key={i} value={i}>
-            {i}
-          </option>
-        )),
+      type: 'date',
     },
   },
   {
-    key: 'startOfDay',
+    key: 'endOfDay',
+    label: '计划结束日期',
+    props: {
+      type: 'date',
+    },
+  },
+  {
+    key: 'startOfHour',
     label: '每日最早几点',
     props: {
       select: true,
@@ -78,7 +93,7 @@ const formKeys = [
     },
   },
   {
-    key: 'endOfDay',
+    key: 'endOfHour',
     label: '每日最晚几点',
     props: {
       select: true,
@@ -150,8 +165,10 @@ const formKeys = [
 
 const initialValue = {
   days: 7,
-  startOfDay: 8,
-  endOfDay: 17,
+  startOfDay: moment().format('YYYY-MM-DD'),
+  endOfDay: moment().add(7, 'days').format('YYYY-MM-DD'),
+  startOfHour: 8,
+  endOfHour: 17,
   timeRange: 60,
   multi: true,
 };
@@ -192,7 +209,7 @@ export default class CreateArticle extends PureComponent {
             const params = values;
 
             // 将部分参数转为整形
-            ['days', 'startOfDay', 'endOfDay', 'timeRange'].map((i) => {
+            ['days', 'startOfHour', 'endOfHour', 'timeRange'].map((i) => {
               if (params[i]) {
                 params[i] = parseInt(params[i], 0);
               }
