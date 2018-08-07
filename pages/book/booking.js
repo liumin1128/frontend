@@ -23,7 +23,7 @@ const styles = theme => ({
     marginTop: 16,
     margin: '0 auto',
     display: 'block',
-    padding: '16px 32px',
+    // padding: '16px 32px',
   },
   menuButton: {
     marginLeft: -12,
@@ -38,6 +38,15 @@ const styles = theme => ({
 
 @withStyles(styles)
 export default class Index extends PureComponent {
+  state = {
+
+  }
+
+  onChange = (value) => {
+    console.log('value');
+    console.log(value);
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -69,7 +78,15 @@ export default class Index extends PureComponent {
           </div>
           <Card>
             <CardContent>
-              <Book />
+              <Book onChange={this.onChange} />
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.submitButton}
+              >
+                我选好了，迫不及待想要发布呢
+              </Button>
             </CardContent>
           </Card>
         </div>

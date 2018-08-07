@@ -115,10 +115,9 @@ export default class Index extends PureComponent {
       }
     }
 
-    this.setState({
-      values: { ...values },
-    });
+    this.setValue({ ...values });
   }
+
 
   onMutiSelectStart = (x, y) => {
     // 获取多选开始坐标并记录
@@ -187,9 +186,18 @@ export default class Index extends PureComponent {
 
     // 保存数据并清空开始坐标
     this.setState({
-      values: { ...values },
       xyTemp: {},
     });
+
+    this.setValue({ ...values });
+  }
+
+  setValue = (values) => {
+    this.setState({ values });
+    const { onChange } = this.props;
+    if (onChange) {
+      onChange(values);
+    }
   }
 
   render() {
