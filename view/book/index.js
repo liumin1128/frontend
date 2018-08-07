@@ -68,7 +68,7 @@ const styles = theme => ({
 @withStyles(styles)
 export default class Index extends PureComponent {
   state = {
-    // {days: 7, startOfDay: 8, endOfDay: 17, multi: true, title: "1212121"},
+    // {days: 7, startOfHour: 8, endOfHour: 17, multi: true, title: "1212121"},
     // days: list.map(i => ({ key: i, label: `${i} 七月`, active: false })),
     // days: new Array(7)
     //   .fill('x')
@@ -207,7 +207,18 @@ export default class Index extends PureComponent {
     // console.log('setting');
     // console.log(setting);
 
-    const { days: _days, timeRange, startOfDay, endOfDay, title } = setting;
+    const { startOfHour, endOfHour, startOfDay, endOfDay, timeRange, title } = setting;
+
+
+    // const startOfDayOfYear = moment(startOfDay).dayOfYear()
+    // const endOfDayOfYear = moment(endOfDay).dayOfYear()
+
+    // const yearCha = moment(endOfDay) - moment(startOfDay)
+
+    const _days = (moment(endOfDay) - moment(startOfDay)) / (1000 * 60 * 60 * 24) + 1;
+    // console.log('_days');
+    // console.log(_days);
+    // console.log(_days);
 
     const days = new Array(_days)
       .fill('x')
@@ -262,7 +273,7 @@ export default class Index extends PureComponent {
                 // 最小时间颗粒的结束值
                 const end = start + interval;
 
-                if (start >= startOfDay * 60 * 60 && end <= (endOfDay + 1) * 60 * 60) {
+                if (start >= startOfHour * 60 * 60 && end <= (endOfHour + 1) * 60 * 60) {
                   // 如果时间点在可选范围以外，则不填充
                   temp.push({
                     idx: i,
@@ -288,9 +299,7 @@ export default class Index extends PureComponent {
                       >
 
                         <div className={classes.dayTitle}>
-                          {i}
-                          {' '}
-                          日
+                          {moment(startOfDay).add(i, 'days').format('MM-DD')}
                         </div>
                         {temp.map((j, timeIndex) => {
                           // console.log(values);
