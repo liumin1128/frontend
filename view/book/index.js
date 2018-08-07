@@ -67,23 +67,11 @@ const styles = theme => ({
 @connect(({ book }) => ({ ...book }))
 @withStyles(styles)
 export default class Index extends PureComponent {
-  state = {
-    // {days: 7, startOfHour: 8, endOfHour: 17, multi: true, title: "1212121"},
-    // days: list.map(i => ({ key: i, label: `${i} 七月`, active: false })),
-    // days: new Array(7)
-    //   .fill('x')
-    //   .map((i, index) => index),
-    // type: 'day',
-    type: '60min',
-    // type: '30min',
-    // type: '15min',
-    values: {
-      // 1531497600: [7],
-    },
-
-    xyTemp: {},
-
-    // timeRange: 60,
+  constructor(props) {
+    super(props);
+    this.state = {
+      values: this.props.times || {},
+    };
   }
 
   onSelect = ({ day, start, end, idx, active }) => {
@@ -299,7 +287,7 @@ export default class Index extends PureComponent {
                       >
 
                         <div className={classes.dayTitle}>
-                          {moment(startOfDay).add(i, 'days').format('MM-DD')}
+                          {moment(startOfDay).add(i, 'days').format('MM-DD ddd')}
                         </div>
                         {temp.map((j, timeIndex) => {
                           // console.log(values);

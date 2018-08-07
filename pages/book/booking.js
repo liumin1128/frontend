@@ -52,6 +52,13 @@ export default class Index extends PureComponent {
     console.log('values');
     console.log(values);
     this.setState({ times: values });
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'book/save',
+      payload: {
+        times: values,
+      },
+    });
   }
 
   onSubmit =() => {
