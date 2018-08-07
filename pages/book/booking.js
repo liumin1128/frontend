@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
@@ -36,15 +37,28 @@ const styles = theme => ({
   },
 });
 
+@connect(({ book }) => ({ ...book }))
 @withStyles(styles)
 export default class Index extends PureComponent {
-  state = {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      times: this.props.times,
+      setting: this.props.setting,
+    };
   }
 
-  onChange = (value) => {
-    console.log('value');
-    console.log(value);
+  onChange = (values) => {
+    console.log('values');
+    console.log(values);
+    this.setState({ times: values });
+  }
+
+  onSubmit =() => {
+    const { times, setting } = this.state;
+
+    console.log(times);
+    console.log(setting);
   }
 
   render() {
@@ -80,10 +94,10 @@ export default class Index extends PureComponent {
             <CardContent>
               <Book onChange={this.onChange} />
               <Button
-                type="submit"
                 variant="contained"
                 color="primary"
                 className={classes.submitButton}
+                onClick={this.onSubmit}
               >
                 我选好了，迫不及待想要发布呢
               </Button>
