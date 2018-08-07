@@ -58,12 +58,7 @@ export default class Index extends PureComponent {
           </Toolbar>
         </AppBar>
         <Card className={classes.root}>
-
-
           <CardContent>
-
-
-            <br />
             <Book />
           </CardContent>
         </Card>

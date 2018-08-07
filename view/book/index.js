@@ -12,7 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   container: {
     maxWidth: 1000,
-    margin: '100px auto',
+    margin: '0 auto',
     // border: '1px red solid',
   },
   day: {
@@ -22,12 +22,21 @@ const styles = theme => ({
     // padding: 2,
     maxWidth: 100,
   },
+  dayTitle: {
+    color: '#666',
+    padding: '16px 0',
+    fontWeight: 700,
+    // background: 'rgba(0,0,0,0.05)',
+    borderBottom: '2px rgba(0,0,0,0.1) dashed',
+    marginBottom: 16,
+  },
   item: {
     display: 'inline-block',
     // width: `${100 / 7}%`,
     // border: '1px red solid',
     padding: '8px 0',
     height: 60,
+    fontWeight: 400,
     // background: 'green',
     // transition: '1s',
     // background: '#f1f1f1',
@@ -198,7 +207,9 @@ export default class Index extends PureComponent {
 
     return (
       <Fragment>
-        {JSON.stringify(values, 0, 2)}
+        {
+          // JSON.stringify(values, 0, 2)
+        }
         {(() => {
           switch (type) {
             case 'day':
@@ -258,9 +269,12 @@ export default class Index extends PureComponent {
                         }}
                         className={classes.day}
                       >
-                        {i}
-                        {' '}
-                        日
+
+                        <div className={classes.dayTitle}>
+                          {i}
+                          {' '}
+                          日
+                        </div>
                         {temp.map((j, timeIndex) => {
                           // console.log(values);
 
