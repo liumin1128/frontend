@@ -152,7 +152,7 @@ const initialValue = {
   days: 7,
   startOfDay: 8,
   endOfDay: 17,
-  timeRange: 30,
+  timeRange: 60,
   multi: true,
 };
 

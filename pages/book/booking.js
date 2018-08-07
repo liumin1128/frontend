@@ -29,6 +29,11 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20,
   },
+  tip: {
+    fontSize: 10,
+    color: '#999',
+    marginBottom: 8,
+  },
 });
 
 @withStyles(styles)
@@ -53,15 +58,22 @@ export default class Index extends PureComponent {
               <ArrowBackIcon />
             </IconButton>
             <Typography variant="title" color="inherit" className={classes.flex}>
-          选择可用时间
+              选择可用时间
             </Typography>
           </Toolbar>
         </AppBar>
-        <Card className={classes.root}>
-          <CardContent>
-            <Book />
-          </CardContent>
-        </Card>
+
+        <div className={classes.root}>
+          <div className={classes.tip}>
+            点击选择可用时间段，可以按住拖动来一次选择多个哦~
+          </div>
+          <Card>
+            <CardContent>
+              <Book />
+            </CardContent>
+          </Card>
+        </div>
+
       </Fragment>
     );
   }

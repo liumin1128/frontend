@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
-
+import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { withStyles } from '@material-ui/core/styles';
@@ -47,7 +47,7 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     '&:hover': {
-      boxShadow: '0 0 0px 1px #ccc',
+      boxShadow: '0 0 0px 1px #d500f9',
       zIndex: 1,
       boxSizing: 'border-box',
       // background: '#f2f2f2',
@@ -199,7 +199,7 @@ export default class Index extends PureComponent {
     // console.log('setting');
     // console.log(setting);
 
-    const { days: _days, timeRange, startOfDay, endOfDay } = setting;
+    const { days: _days, timeRange, startOfDay, endOfDay, title } = setting;
 
     const days = new Array(_days)
       .fill('x')
@@ -207,6 +207,15 @@ export default class Index extends PureComponent {
 
     return (
       <Fragment>
+        {
+        //   <Typography variant="title" gutterBottom>
+        //   活动：
+        //   {title}
+        // </Typography>
+        // <Typography variant="subheading" gutterBottom>
+        //   点击选择可用时间段，可以按住拖动来一次选择多个哦~
+        // </Typography>
+        }
         {
           // JSON.stringify(values, 0, 2)
         }
