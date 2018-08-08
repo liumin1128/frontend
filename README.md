@@ -70,4 +70,50 @@ ui框架用的material-ui
 输入时间表参数
 输出时间选择结果
 
+### 用户登录
+
+创建全局组件requireAuth，对所有页面进行检测（排除login/oauth页面），判断用户是否登录，如果尚未登录，则要求用户先登录。
+登录逻辑由后端操控，url转跳至http://localhost:3101/oauth/outlook即可
+
+```
+  if (router.pathname === '/login/oauth') {
+      return (
+        <Fragment>
+          {children}
+        </Fragment>
+      );
+    }
+
+  if (!user || !user.token) {
+    return (
+      <Fragment>
+        <div style={{ padding: 50 }}>
+          请先
+          <a href="http://localhost:3101/oauth/outlook">
+            登录
+          </a>
+        </div>
+      </Fragment>
+    );
+  }
+```
+
+创建login/oauth页面，用于接受登录成功返回的token，并触发redux中的登录逻辑
+
+```
+  componentDidMount() {
+    const { dispatch, router } = this.props;
+    const { token } = router.query || {};
+    
+    if (token) {
+      dispatch({
+        type: 'user/loginByOauth',
+        payload: { token },
+      });
+    }
+  }
+```
+
+
+
 

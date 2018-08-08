@@ -7,11 +7,7 @@ import { withRouter } from 'next/router';
 export default class Index extends PureComponent {
   componentDidMount() {
     const { dispatch, router } = this.props;
-
     const { token } = router.query || {};
-
-    console.log('this.props');
-    console.log(this.props);
 
     if (token) {
       dispatch({

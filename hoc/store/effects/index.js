@@ -6,6 +6,17 @@ export default {
   test: () => {
     console.log('test effects');
   },
+  'user/loginByOauth': async ({ payload, cb }, { getState, dispatch }) => {
+    try {
+      const { token } = payload;
+      if (token) {
+        await setStorage(USER_TOKEN_KEY, token);
+        await dispatch({ type: 'user/save', payload: { token } });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  },
   'user/login': async ({ payload, cb }, { getState, dispatch }) => {
     try {
       const { status, token, userInfo } = await request('user/login', payload);
