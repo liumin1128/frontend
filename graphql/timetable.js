@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const TIMEETABLE_DETAIL = gql`
+export const TIMETABLE_DETAIL = gql`
   query TimetableDetail($_id: String!) {
     timetable: timetable(_id: $_id) {
       __typename
@@ -10,7 +10,7 @@ export const TIMEETABLE_DETAIL = gql`
   }
 `;
 
-export const TIMEETABLE_LIST = gql`
+export const TIMETABLE_LIST = gql`
   query TimetableList($first: Int!, $skip: Int!) {
     list: timetables(first: $first, skip: $skip) {
       __typename
@@ -23,7 +23,7 @@ export const TIMEETABLE_LIST = gql`
   }
 `;
 
-export const CREATE_TIMEETABLE = gql`
+export const CREATE_TIMETABLE = gql`
   mutation ($input: TimetableInput) {
     item: createTimetable(input: $input) {
       __typename

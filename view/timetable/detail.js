@@ -8,12 +8,12 @@ export default class ArticleDetail extends PureComponent {
     return (
       <Query query={TIMETABLE_DETAIL} variables={{ _id }}>
         {({ loading, error, data = {} }) => {
-          const { article = {} } = data;
+          const { timetable = {} } = data;
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
           return (
             <div>
-              {article.title}
+              {timetable.title}
             </div>
           );
         }}

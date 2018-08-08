@@ -1,5 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
-import { CREATE_TIMEETABLE } from '@/graphql/timetable';
+import { CREATE_TIMETABLE } from '@/graphql/timetable';
 
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
@@ -73,7 +73,7 @@ export default class Index extends PureComponent {
     const { classes } = this.props;
 
     return (
-      <Mutation mutation={CREATE_TIMEETABLE}>
+      <Mutation mutation={CREATE_TIMETABLE}>
         {(createTimetable, { loading, error, data = {} }) => {
           const onSubmit = async () => {
             const { times, setting } = this.state;

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-// import ArticleDetail from '@/view/article/detail';
+import TimetableDetail from '@/view/timetable/detail';
 
 const styles = theme => ({
   root: {
@@ -34,13 +34,16 @@ export default class News extends PureComponent {
 
   render() {
     const { classes, query } = this.props;
+
+    // console.log('query');
+    // console.log(query);
     return (
       <div className={classes.root}>
         <div className={classes.root}>
           <Grid className={classes.container} container spacing={16}>
             <Grid item xs={12} sm={12} md={8}>
               <div className={classes.body}>
-                9999
+                <TimetableDetail query={query} />
               </div>
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
