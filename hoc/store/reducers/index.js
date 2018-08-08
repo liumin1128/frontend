@@ -11,6 +11,7 @@ const reducers = reducerFactory([
     namespace: 'book',
     initState: { },
   },
+  'user',
 ]);
 
 export default combineReducers({
