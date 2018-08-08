@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Mutation } from 'react-apollo';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Router from 'next/router';
 import Button from '@material-ui/core/Button';
@@ -15,6 +16,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Snackbar from '@/components/snackbar';
 import Book from '@/view/book';
+import { modalConsumer } from '@/hoc/widthModal';
 
 const styles = theme => ({
   root: {
@@ -43,6 +45,7 @@ const styles = theme => ({
 
 @connect(({ book }) => ({ ...book }))
 @withStyles(styles)
+@modalConsumer
 export default class Index extends PureComponent {
   constructor(props) {
     super(props);
@@ -86,9 +89,49 @@ export default class Index extends PureComponent {
                 refetchQueries: ['TimetableList'],
               });
 
+              const { modal } = this.props;
+
+              modal(() => (
+                <Card className={classes.card}>
+                  <CardContent>
+                    <Typography gutterBottom variant="headline" component="h2">
+                      发布成功！
+                    </Typography>
+                    <Typography component="p">
+                      您的日程安排【
+                      {input.title}
+                      】已创建成功！请将以下地址分享给您的朋友：
+                    </Typography>
+                    <Typography component="p">
+                      <pre style={{ padding: 16, background: 'rgba(0,0,0,0.05)' }} href="http://localhost:8000">
+                        http://localhost:8000
+                      </pre>
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" color="primary">
+                      关闭
+                    </Button>
+                    <Button
+                      size="small"
+                      color="primary"
+                      onClick={() => {
+                        window.clipboardData.setData('text', 'http://localhost:8000');
+                        Snackbar.success('已复制到剪帖板！');
+                      }}
+                    >
+                      复制到剪切板
+                    </Button>
+                    <Button size="small" color="primary">
+                      前往查看
+                    </Button>
+                  </CardActions>
+                </Card>
+              ));
+
+
               console.log('result');
               console.log(result);
-              Snackbar.success('发布成功！');
               // Router.push('/article');
             } catch (err) {
               console.log('err');
