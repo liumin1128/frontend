@@ -102,7 +102,7 @@ export default class Index extends PureComponent {
             } catch (err) {
               console.log('err');
               console.log(err);
-              // Snackbar.error('文章发布失败');
+              // Snackbar.error('文章发');
             }
           };
 
@@ -123,14 +123,14 @@ export default class Index extends PureComponent {
                     <ArrowBackIcon />
                   </IconButton>
                   <Typography variant="title" color="inherit" className={classes.flex}>
-                    选择可用时间
+                    选择可用时对的间
                   </Typography>
                 </Toolbar>
               </AppBar>
 
               <div className={classes.root}>
                 <div className={classes.tip}>
-                  点击选择可用时间段，可以按住拖动来一次选择多个哦~
+                  点击选择可用时间段然后，可以按住拖动来一次选择多个哦~
                 </div>
                 <Card>
                   <CardContent>
@@ -141,7 +141,7 @@ export default class Index extends PureComponent {
                       className={classes.submitButton}
                       onClick={onSubmit}
                     >
-                      我选好了，迫不及待想要发布呢
+                      我选好了，迫不及待想hahahahaha
                     </Button>
                   </CardContent>
                 </Card>
