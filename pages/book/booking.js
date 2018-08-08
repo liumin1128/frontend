@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { CREATE_TIMETABLE } from '@/graphql/timetable';
-
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { Mutation } from 'react-apollo';
@@ -84,12 +84,14 @@ export default class Index extends PureComponent {
             };
 
             try {
-              const result = await createTimetable({
+              const { data } = await createTimetable({
                 variables: { input },
                 refetchQueries: ['TimetableList'],
               });
 
               const { modal } = this.props;
+              const url = `http://localhost:8000/timetable/detail?_id=${data.item._id}`;
+
 
               modal(() => (
                 <Card className={classes.card}>
@@ -104,24 +106,30 @@ export default class Index extends PureComponent {
                     </Typography>
                     <Typography component="p">
                       <pre style={{ padding: 16, background: 'rgba(0,0,0,0.05)' }} href="http://localhost:8000">
-                        http://localhost:8000
+                        {url}
                       </pre>
                     </Typography>
+                    <p />
                   </CardContent>
                   <CardActions>
                     <Button size="small" color="primary">
                       关闭
                     </Button>
-                    <Button
-                      size="small"
-                      color="primary"
-                      onClick={() => {
-                        window.clipboardData.setData('text', 'http://localhost:8000');
+
+                    <CopyToClipboard
+                      text={url}
+                      onCopy={() => {
                         Snackbar.success('已复制到剪帖板！');
                       }}
                     >
-                      复制到剪切板
-                    </Button>
+                      <Button
+                        size="small"
+                        color="primary"
+                      >
+                        复制到剪切板
+                      </Button>
+                    </CopyToClipboard>
+
                     <Button size="small" color="primary">
                       前往查看
                     </Button>
@@ -130,8 +138,8 @@ export default class Index extends PureComponent {
               ));
 
 
-              console.log('result');
-              console.log(result);
+              // console.log('result');
+              // console.log(result);
               // Router.push('/article');
             } catch (err) {
               console.log('err');
