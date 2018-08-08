@@ -1,12 +1,16 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'next/router';
+import { getStorage } from '@/utils/store';
+import { USER_TOKEN_KEY } from '@/constants/base';
+import nossr from "./nossr";
 
+@nossr
 @connect(({ user }) => ({ user }))
 @withRouter
 export default class Auth extends PureComponent {
   render() {
-    const { children, user, router = {} } = this.props;
+    const { dispatch, children, user, router = {} } = this.props;
 
     // console.log('this.props');
     // console.log(this.props);
@@ -20,6 +24,23 @@ export default class Auth extends PureComponent {
     }
 
     if (!user || !user.token) {
+      const token = getStorage(USER_TOKEN_KEY);
+
+      console.log('token');
+      console.log(token);
+
+      if (token) {
+        dispatch({
+          type: 'user/loginByOauth',
+          payload: { token },
+        });
+        return (
+          <div>
+            登录泸州
+          </div>
+        );
+      }
+
       return (
         <Fragment>
           <div style={{ padding: 50 }}>
