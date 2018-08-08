@@ -64,7 +64,7 @@ export default class Index extends PureComponent {
   onSubmit =() => {
     const { times, setting } = this.state;
 
-    console.log(times);
+    console.log(JSON.stringify(times));
     console.log(setting);
   }
 

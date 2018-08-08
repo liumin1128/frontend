@@ -154,8 +154,8 @@ const formKeys = [
 
   },
   {
-    key: 'message',
-    label: '给访客的留言',
+    key: 'description',
+    label: '描述一下本次活动',
     props: {
       multiline: true,
       rows: 4,
