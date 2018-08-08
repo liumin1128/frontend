@@ -1,10 +1,23 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'next/router';
 
 @connect(({ user }) => ({ user }))
+@withRouter
 export default class Auth extends PureComponent {
   render() {
-    const { children, user } = this.props;
+    const { children, user, router = {} } = this.props;
+
+    // console.log('this.props');
+    // console.log(this.props);
+
+    if (router.pathname === '/login/oauth') {
+      return (
+        <Fragment>
+          {children}
+        </Fragment>
+      );
+    }
 
     if (!user || !user.token) {
       return (
@@ -15,7 +28,6 @@ export default class Auth extends PureComponent {
               登录
             </a>
           </div>
-
         </Fragment>
       );
     }
