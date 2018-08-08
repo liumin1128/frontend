@@ -1,4 +1,5 @@
 import request from '@/utils/request';
+import Router from 'next/router';
 import { setStorage } from '@/utils/store';
 import { USER_TOKEN_KEY } from '@/constants/base';
 
@@ -12,6 +13,7 @@ export default {
       if (token) {
         await setStorage(USER_TOKEN_KEY, token);
         await dispatch({ type: 'user/save', payload: { token } });
+        await Router.push('/');
       }
     } catch (error) {
       console.log(error);
