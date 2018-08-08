@@ -1,7 +1,7 @@
 import request from '@/utils/request';
 import Router from 'next/router';
 import { setStorage } from '@/utils/store';
-import { USER_TOKEN_KEY } from '@/constants/base';
+import { STORE_USER_KEY } from '@/constants/base';
 
 export default {
   test: () => {
@@ -11,7 +11,7 @@ export default {
     try {
       const { token } = payload;
       if (token) {
-        await setStorage(USER_TOKEN_KEY, token);
+        await setStorage(STORE_USER_KEY, { token });
         await dispatch({ type: 'user/save', payload: { token } });
         await Router.push('/');
       }
@@ -23,7 +23,7 @@ export default {
     try {
       const { status, token, userInfo } = await request('user/login', payload);
       if (status === 200) {
-        await setStorage(USER_TOKEN_KEY, token);
+        await setStorage(STORE_USER_KEY, { token });
         await dispatch({ type: 'user/save', payload: { userInfo } });
       }
     } catch (error) {

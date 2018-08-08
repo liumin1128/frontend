@@ -30,6 +30,8 @@ const cache = new InMemoryCache({
 
 const request = async (operation) => {
   const { token } = await getStorage(STORE_USER_KEY) || {};
+  alert('xxxx');
+  alert(token);
   operation.setContext({
     headers: {
       Authorization: `bearer ${token}`,
@@ -96,7 +98,7 @@ function create(initialState) {
         cache,
       }),
       new HttpLink({
-        uri: 'https://api.react.mobi/graphql', // Server URL (must be absolute)
+        uri: 'http://localhost:3101/graphql', // Server URL (must be absolute)
         credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       }),
     ]),
