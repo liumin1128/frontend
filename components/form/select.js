@@ -1,6 +1,5 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
 
 export default ({
   input: { name, onChange, value, ...restInput },
