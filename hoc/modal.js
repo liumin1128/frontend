@@ -17,9 +17,16 @@ export default function (WrappedComponent) {
     state = {
       open: true,
     };
+
     handleClose = () => {
       this.setState({ open: false });
+      console.log('this.props');
+      console.log(this.props);
+
+      const { onClose } = this.props;
+      if (onClose) onClose();
     };
+
     render() {
       const { destory } = this.props;
       return (

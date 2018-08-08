@@ -17,6 +17,8 @@ import Typography from '@material-ui/core/Typography';
 import Snackbar from '@/components/snackbar';
 import Book from '@/view/book';
 import { modalConsumer } from '@/hoc/widthModal';
+import TimetableView from '@/view/timetable/result';
+import pp from '@/hoc/pp';
 
 const styles = theme => ({
   root: {
@@ -90,52 +92,8 @@ export default class Index extends PureComponent {
               });
 
               const { modal } = this.props;
-              const url = `http://localhost:8000/timetable/detail?_id=${data.item._id}`;
 
-
-              modal(() => (
-                <Card className={classes.card}>
-                  <CardContent>
-                    <Typography gutterBottom variant="headline" component="h2">
-                      发布成功！
-                    </Typography>
-                    <Typography component="p">
-                      您的日程安排【
-                      {input.title}
-                      】已创建成功！请将以下地址分享给您的朋友：
-                    </Typography>
-                    <Typography component="p">
-                      <pre style={{ padding: 16, background: 'rgba(0,0,0,0.05)' }} href="http://localhost:8000">
-                        {url}
-                      </pre>
-                    </Typography>
-                    <p />
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" color="primary">
-                      关闭
-                    </Button>
-
-                    <CopyToClipboard
-                      text={url}
-                      onCopy={() => {
-                        Snackbar.success('已复制到剪帖板！');
-                      }}
-                    >
-                      <Button
-                        size="small"
-                        color="primary"
-                      >
-                        复制到剪切板
-                      </Button>
-                    </CopyToClipboard>
-
-                    <Button size="small" color="primary">
-                      前往查看
-                    </Button>
-                  </CardActions>
-                </Card>
-              ));
+              modal(pp(TimetableView, { timetable: data.item }));
 
 
               // console.log('result');
