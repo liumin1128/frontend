@@ -1,11 +1,11 @@
 import React, { PureComponent, Fragment } from 'react';
-// import Index from './book/setting';
 
-export default class Index extends PureComponent {
+export default class Auth extends PureComponent {
   render() {
+    const { children } = this.props;
     return (
       <Fragment>
-        7777
+        {children}
       </Fragment>
     );
   }
