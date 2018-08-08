@@ -85,6 +85,7 @@ export default class Index extends PureComponent {
                 variables: { input },
                 refetchQueries: ['TimetableList'],
               });
+
               console.log('result');
               console.log(result);
               Snackbar.success('发布成功！');
