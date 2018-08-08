@@ -20,10 +20,9 @@ const cache = new InMemoryCache({
   // 存缓解析器，实现列表目录到详情
   cacheRedirects: {
     Query: {
-      say: (_, { _id }, { getCacheKey }) =>
-        getCacheKey({ __typename: 'Say', _id }),
-      article: (_, { _id }, { getCacheKey }) =>
-        getCacheKey({ __typename: 'Article', _id }),
+      say: (_, { _id }, { getCacheKey }) => getCacheKey({ __typename: 'Say', _id }),
+      article: (_, { _id }, { getCacheKey }) => getCacheKey({ __typename: 'Article', _id }),
+      timetable: (_, { _id }, { getCacheKey }) => getCacheKey({ __typename: 'Timetable', _id }),
     },
   },
 });
@@ -38,24 +37,23 @@ const request = async (operation) => {
   });
 };
 
-const requestLink = new ApolloLink((operation, forward) =>
-  new Observable((observer) => {
-    let handle;
-    Promise.resolve(operation)
-      .then(oper => request(oper))
-      .then(() => {
-        handle = forward(operation).subscribe({
-          next: observer.next.bind(observer),
-          error: observer.error.bind(observer),
-          complete: observer.complete.bind(observer),
-        });
-      })
-      .catch(observer.error.bind(observer));
+const requestLink = new ApolloLink((operation, forward) => new Observable((observer) => {
+  let handle;
+  Promise.resolve(operation)
+    .then(oper => request(oper))
+    .then(() => {
+      handle = forward(operation).subscribe({
+        next: observer.next.bind(observer),
+        error: observer.error.bind(observer),
+        complete: observer.complete.bind(observer),
+      });
+    })
+    .catch(observer.error.bind(observer));
 
-    return () => {
-      if (handle) handle.unsubscribe;
-    };
-  }));
+  return () => {
+    if (handle) handle.unsubscribe;
+  };
+}));
 
 function create(initialState) {
   return new ApolloClient({
@@ -121,4 +119,3 @@ export default function initApollo(initialState) {
 
   return apolloClient;
 }
-

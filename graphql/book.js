@@ -37,18 +37,18 @@ import gql from 'graphql-tag';
 //   }
 // `;
 
-export const CREATE_AVAILABLETIME = gql`
-  mutation ($input: AvaliableTimeInput) {
-    item: createAvaliableTime(input: $input) {
-      __typename
-      _id
-      title
-      content
-      createdAt
-      user {
-        nickname
-        avatarUrl
-      }
-    }
-  }
-`;
+// export const CREATE_AVAILABLETIME = gql`
+//   mutation ($input: AvaliableTimeInput) {
+//     item: createAvaliableTime(input: $input) {
+//       __typename
+//       _id
+//       title
+//       content
+//       createdAt
+//       user {
+//         nickname
+//         avatarUrl
+//       }
+//     }
+//   }
+// `;

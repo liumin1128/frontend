@@ -1,5 +1,5 @@
 import React, { PureComponent, Fragment, createRef } from 'react';
-import { Mutation } from 'react-apollo';
+// import { Mutation } from 'react-apollo';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import Head from 'next/head';
@@ -12,13 +12,13 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Snackbar from '@/components/snackbar';
+// import Snackbar from '@/components/snackbar';
 import TextField from '@/components/form/textField';
-import { CREATE_AVAILABLETIME } from '@/graphql/book';
+// import { CREATE_AVAILABLETIME } from '@/graphql/book';
 import nossr from '@/hoc/nossr';
-import { getStorage } from '@/utils/store';
+// import { getStorage } from '@/utils/store';
 // import { isServerSide } from '@/utils/common';
-import { STORE_USER_KEY } from '@/constants/base';
+// import { STORE_USER_KEY } from '@/constants/base';
 
 const styles = theme => ({
   root: {
@@ -164,7 +164,6 @@ const formKeys = [
 ];
 
 const initialValue = {
-  days: 7,
   startOfDay: moment().format('YYYY-MM-DD'),
   endOfDay: moment().add(7, 'days').format('YYYY-MM-DD'),
   startOfHour: 8,
@@ -178,6 +177,24 @@ const initialValue = {
 @nossr
 export default class CreateArticle extends PureComponent {
   editor = createRef()
+
+
+  onSubmit = (values) => {
+    const params = values;
+
+    // 将部分参数转为整形
+    ['days', 'startOfHour', 'endOfHour', 'timeRange'].map((i) => {
+      if (params[i]) {
+        params[i] = parseInt(params[i], 0);
+      }
+    });
+
+    // 将参数存进redux
+    const { dispatch } = this.props;
+    dispatch({ type: 'book/save', payload: { setting: params } });
+
+    Router.push('/book/booking');
+  }
 
   validate = (values) => {
     const errors = {};
@@ -201,72 +218,34 @@ export default class CreateArticle extends PureComponent {
     } : initialValue;
 
     return (
-      <Mutation mutation={CREATE_AVAILABLETIME}>
-        {(createArticle, { loading, error, data = {} }) => {
-          // if (loading) return 'Loading...';
-          // if (error) return `Error! ${error.message}`;
-          const onSubmit = async (values) => {
-            const params = values;
+      <Fragment>
 
-            // 将部分参数转为整形
-            ['days', 'startOfHour', 'endOfHour', 'timeRange'].map((i) => {
-              if (params[i]) {
-                params[i] = parseInt(params[i], 0);
-              }
-            });
+        <Head>
+          <link href="/static/draft-editor.css" rel="stylesheet" />
+        </Head>
 
-            // 将参数存进redux
-            const { dispatch } = this.props;
-            dispatch({ type: 'book/save', payload: { setting: params } });
-
-            Router.push('/book/booking');
-
-            // try {
-            //   const result = await createArticle({
-            //     variables: { input },
-            //     refetchQueries: ['ArticleList'],
-            //   });
-            //   console.log('result');
-            //   console.log(result);
-            //   Snackbar.success('发布成功！');
-            //   Router.push('/article');
-            // } catch (err) {
-            //   console.log('err');
-            //   console.log(err);
-            //   // Snackbar.error('文章发布失败');
-            // }
-          };
-
-
-          return (
-            <Fragment>
-
-              <Head>
-                <link href="/static/draft-editor.css" rel="stylesheet" />
-              </Head>
-
-              <AppBar position="fixed" className={classes.appbar}>
-                <Toolbar>
-                  <Typography variant="title" color="inherit" className={classes.flex}>
+        <AppBar position="fixed" className={classes.appbar}>
+          <Toolbar>
+            <Typography variant="title" color="inherit" className={classes.flex}>
                   设置
-                  </Typography>
-                </Toolbar>
-              </AppBar>
+            </Typography>
+          </Toolbar>
+        </AppBar>
 
-              <Card className={classes.root}>
+        <Card className={classes.root}>
 
 
-                <CardContent>
+          <CardContent>
 
-                  <Form
-                    onSubmit={onSubmit}
-                    initialValues={formData}
+            <Form
+              onSubmit={this.onSubmit}
+              initialValues={formData}
                     // values={formData}
-                    validate={this.validate}
-                    render={({ handleSubmit, reset, submitting, pristine, change, values }) => (
-                      <form id="createArticleForm" onSubmit={handleSubmit}>
+              validate={this.validate}
+              render={({ handleSubmit, reset, submitting, pristine, change, values }) => (
+                <form id="createArticleForm" onSubmit={handleSubmit}>
 
-                        {
+                  {
                           formKeys.map(i => (
                             <Field
                               key={i.key}
@@ -282,25 +261,21 @@ export default class CreateArticle extends PureComponent {
                           ))
                         }
 
-                        <Button
-                          type="submit"
-                          variant="contained"
-                          color="primary"
-                          className={classes.submitButton}
-                          // onClick={() => {
-                          // }}
-                        >
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    className={classes.submitButton}
+                  >
                           我填好了，选择时间段吧
-                        </Button>
+                  </Button>
 
-                      </form>
-                    )}
-                  />
-                </CardContent>
-              </Card>
-            </Fragment>
-          );
-        }}
-      </Mutation>);
+                </form>
+              )}
+            />
+          </CardContent>
+        </Card>
+      </Fragment>
+    );
   }
 }
