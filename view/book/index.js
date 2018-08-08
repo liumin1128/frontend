@@ -289,6 +289,7 @@ export default class Index extends PureComponent {
                         <div className={classes.dayTitle}>
                           {moment(startOfDay).add(i, 'days').format('DD ddd')}
                         </div>
+
                         {temp.map((j, timeIndex) => {
                           // console.log(values);
 

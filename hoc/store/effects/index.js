@@ -1,7 +1,7 @@
 import request from '@/utils/request';
 import Router from 'next/router';
-import { setStorage } from '@/utils/store';
-import { STORE_USER_KEY } from '@/constants/base';
+import { setStorage, getStorage, removeStorage } from '@/utils/store';
+import { STORE_USER_KEY, PATH_BEFORLOGIN } from '@/constants/base';
 
 export default {
   test: () => {
@@ -11,9 +11,18 @@ export default {
     try {
       const { token } = payload;
       if (token) {
+        const path = getStorage(PATH_BEFORLOGIN);
+
+        console.log(path);
+        console.log(path);
+        console.log(path);
+        console.log(path);
+        console.log(path);
+        console.log(path);
+        await removeStorage(PATH_BEFORLOGIN);
         await setStorage(STORE_USER_KEY, { token });
         await dispatch({ type: 'user/save', payload: { token } });
-        await Router.push('/');
+        await Router.push(path || '/');
       }
     } catch (error) {
       console.log(error);

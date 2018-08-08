@@ -1,8 +1,8 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'next/router';
-import { getStorage } from '@/utils/store';
-import { STORE_USER_KEY } from '@/constants/base';
+import { getStorage, setStorage } from '@/utils/store';
+import { STORE_USER_KEY, PATH_BEFORLOGIN } from '@/constants/base';
 import nossr from './nossr';
 
 @nossr
@@ -23,11 +23,13 @@ export default class Auth extends PureComponent {
       );
     }
 
+
     if (!user || !user.token) {
+      setStorage(PATH_BEFORLOGIN, router.asPath);
       const { token } = getStorage(STORE_USER_KEY) || {};
 
-      console.log('token');
-      console.log(token);
+      // console.log('token');
+      // console.log(token);
 
       if (token) {
         dispatch({
