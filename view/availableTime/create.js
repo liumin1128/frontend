@@ -39,7 +39,7 @@ const styles = theme => ({
 const formKeys = [
   {
     key: 'title',
-    label: '一个醒目的标题',
+    label: 'A title for this booking',
   },
   // {
   //   key: 'days',
@@ -62,21 +62,21 @@ const formKeys = [
   // },
   {
     key: 'startOfDay',
-    label: '计划开始日期',
+    label: 'Start date from :  ',
     props: {
       type: 'date',
     },
   },
   {
     key: 'endOfDay',
-    label: '计划结束日期',
+    label: 'The end date :',
     props: {
       type: 'date',
     },
   },
   {
     key: 'startOfHour',
-    label: '每日最早几点',
+    label: 'When is the start time?',
     props: {
       select: true,
       SelectProps: {
@@ -94,7 +94,7 @@ const formKeys = [
   },
   {
     key: 'endOfHour',
-    label: '每日最晚几点',
+    label: 'When is the end time? ',
     props: {
       select: true,
       SelectProps: {
@@ -112,17 +112,17 @@ const formKeys = [
   },
   {
     key: 'timeRange',
-    label: '时间片段',
+    label: 'Time slice',
     props: {
       select: true,
       SelectProps: {
         native: true,
       },
       children: [
-        { value: 60, lable: '一个小时' },
-        { value: 30, lable: '30分钟' },
-        { value: 15, lable: '15分钟' },
-        { value: 5, lable: '5分钟' },
+        { value: 60, lable: '1 hour' },
+        { value: 30, lable: '30 min' },
+        { value: 15, lable: '15 min' },
+        { value: 5, lable: '5 min' },
       ].map((i) => {
         return (
           <option key={i.value} value={i.value}>
@@ -134,15 +134,15 @@ const formKeys = [
   },
   {
     key: 'multi',
-    label: '允许多名访客同时会面吗',
+    label: 'Can multiple visitors meet at the same time？',
     props: {
       select: true,
       SelectProps: {
         native: true,
       },
       children: [
-        { value: true, lable: '是' },
-        { value: false, lable: '否' },
+        { value: true, lable: 'Yes' },
+        { value: false, lable: 'No' },
       ].map((i) => {
         return (
           <option key={i.value} value={i.value}>
@@ -155,7 +155,7 @@ const formKeys = [
   },
   {
     key: 'description',
-    label: '描述一下本次活动',
+    label: 'Remark',
     props: {
       multiline: true,
       rows: 4,
@@ -199,7 +199,7 @@ export default class CreateArticle extends PureComponent {
   validate = (values) => {
     const errors = {};
     if (!values.title) {
-      errors.title = '标题不可以不填哦';
+      errors.title = 'please fill the title name';
     }
 
     return errors;
@@ -227,7 +227,7 @@ export default class CreateArticle extends PureComponent {
         <AppBar position="fixed" className={classes.appbar}>
           <Toolbar>
             <Typography variant="title" color="inherit" className={classes.flex}>
-                  设置
+                  Set avaliable time
             </Typography>
           </Toolbar>
         </AppBar>
@@ -267,7 +267,7 @@ export default class CreateArticle extends PureComponent {
                     color="primary"
                     className={classes.submitButton}
                   >
-                          我填好了，选择时间段吧
+                  I've filled it out. Let's pick the time period!
                   </Button>
 
                 </form>
