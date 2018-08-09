@@ -38,7 +38,7 @@ export default class Auth extends PureComponent {
         });
         return (
           <div>
-            登录泸州
+          login account
           </div>
         );
       }
@@ -46,9 +46,9 @@ export default class Auth extends PureComponent {
       return (
         <Fragment>
           <div style={{ padding: 50 }}>
-            请先
+            please
             <a href="http://localhost:3101/oauth/outlook">
-              登录
+              login account
             </a>
           </div>
         </Fragment>
