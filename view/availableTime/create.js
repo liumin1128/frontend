@@ -39,7 +39,7 @@ const styles = theme => ({
 const formKeys = [
   {
     key: 'title',
-    label: 'A title for this booking',
+    label: 'Booking page title ',
   },
   // {
   //   key: 'days',
@@ -112,7 +112,7 @@ const formKeys = [
   },
   {
     key: 'timeRange',
-    label: 'Time slice',
+    label: 'Duration',
     props: {
       select: true,
       SelectProps: {
@@ -199,7 +199,7 @@ export default class CreateArticle extends PureComponent {
   validate = (values) => {
     const errors = {};
     if (!values.title) {
-      errors.title = 'please fill the title name';
+      errors.title = 'please fill the booking page title ';
     }
 
     return errors;
@@ -227,7 +227,7 @@ export default class CreateArticle extends PureComponent {
         <AppBar position="fixed" className={classes.appbar}>
           <Toolbar>
             <Typography variant="title" color="inherit" className={classes.flex}>
-                  Set avaliable time
+                  Setup your avaliable time
             </Typography>
           </Toolbar>
         </AppBar>
