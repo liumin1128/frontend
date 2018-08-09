@@ -48,7 +48,7 @@ export default class Auth extends PureComponent {
           <div style={{ padding: 50 }}>
             please
             <a href="http://localhost:3101/oauth/outlook">
-              login account
+                login account
             </a>
           </div>
         </Fragment>
