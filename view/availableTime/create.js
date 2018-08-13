@@ -153,6 +153,10 @@ const formKeys = [
     },
 
   },
+  // {
+  //   key: 'email',
+  //   label: '邮箱',
+  // },
   {
     key: 'description',
     label: '描述一下本次活动',

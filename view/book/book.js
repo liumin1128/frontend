@@ -282,6 +282,7 @@ export default class Index extends PureComponent {
                           const valueList = values[dayX] || [];
 
                           const active = valueList.findIndex((v) => { return j.idx === v; }) !== -1;
+
                           return (
                             <ButtonBase
                               className={classes.item + (active ? ` ${classes.active}` : '')}
