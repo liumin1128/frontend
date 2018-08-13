@@ -1,12 +1,10 @@
 import React, { PureComponent, Fragment } from 'react';
 import { CREATE_TIMETABLE } from '@/graphql/timetable';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { Mutation } from 'react-apollo';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Router from 'next/router';
 import Button from '@material-ui/core/Button';
@@ -14,7 +12,6 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Snackbar from '@/components/snackbar';
 import Book from '@/view/book';
 import { modalConsumer } from '@/hoc/widthModal';
 import TimetableView from '@/view/timetable/result';
@@ -102,7 +99,7 @@ export default class Index extends PureComponent {
             } catch (err) {
               console.log('err');
               console.log(err);
-              // Snackbar.error('文章发布失败');
+              // Snackbar.error('文章发');
             }
           };
 
@@ -123,14 +120,15 @@ export default class Index extends PureComponent {
                     <ArrowBackIcon />
                   </IconButton>
                   <Typography variant="title" color="inherit" className={classes.flex}>
-                    选择可用时间
+                  Select available time
                   </Typography>
                 </Toolbar>
               </AppBar>
 
               <div className={classes.root}>
                 <div className={classes.tip}>
-                  点击选择可用时间段，可以按住拖动来一次选择多个哦~
+                Click to select the available time period
+                click and drag to select more than one at a time
                 </div>
                 <Card>
                   <CardContent>
@@ -141,7 +139,7 @@ export default class Index extends PureComponent {
                       className={classes.submitButton}
                       onClick={onSubmit}
                     >
-                      我选好了，迫不及待想要发布呢
+                    I have chosen the time
                     </Button>
                   </CardContent>
                 </Card>

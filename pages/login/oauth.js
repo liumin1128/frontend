@@ -20,7 +20,7 @@ export default class Index extends PureComponent {
   render() {
     return (
       <Fragment>
-        登录成功
+      Successful user login
       </Fragment>
     );
   }

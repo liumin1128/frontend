@@ -24,12 +24,12 @@ export default class Index extends PureComponent {
       <Card className={classes.card}>
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
-            发布成功！
+           Successful realease!
           </Typography>
           <Typography component="p">
-            您的日程安排【
+           Your schedule[
             {timetable.title}
-            】已创建成功！请将以下地址分享给您的朋友：
+            】 has been created successfully! Please share the following address with your friends:
           </Typography>
           <Typography component="p">
             <pre style={{ padding: 16, background: 'rgba(0,0,0,0.05)' }} href="http://localhost:8000">
@@ -40,31 +40,31 @@ export default class Index extends PureComponent {
         </CardContent>
         <CardActions>
           <Button size="small" color="primary">
-            关闭
+            Close
           </Button>
 
           <CopyToClipboard
             text={url}
             onCopy={() => {
-              Snackbar.success('已复制到剪帖板！');
+              Snackbar.success('Copied to clipboard   ！！');
             }}
           >
             <Button
               size="small"
               color="primary"
             >
-              复制到剪切板
+              Copy to clipboard
             </Button>
           </CopyToClipboard>
 
           <Button
+            size="small"
+            color="primary"
             onClick={() => {
               window.location.href = url;
             }}
-            size="small"
-            color="primary"
           >
-            前往查看
+            View the booking information
           </Button>
         </CardActions>
       </Card>
