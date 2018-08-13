@@ -78,8 +78,8 @@ export default class Index extends PureComponent {
   }
 
   onSelect = ({ day, start, end, idx, active }) => {
-    console.log('day, start, end, idx, active');
-    console.log(day, start, end, idx, active);
+    // console.log('day, start, end, idx, active');
+    // console.log(day, start, end, idx, active);
     const { values } = this.state;
     if (!values[day]) {
       values[day] = [];

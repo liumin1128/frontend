@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { Query } from 'react-apollo';
+import { connect } from 'react-redux';
 import Router from 'next/router';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -26,11 +27,14 @@ const styles = theme => ({
   },
 });
 
+@connect(({ book }) => ({ book }))
 @withStyles(styles)
 export default class ArticleDetail extends PureComponent {
   render() {
     const _id = this.props.query._id;
-    const { classes } = this.props;
+    const { classes, book = {} } = this.props;
+    const { ibooktimes = {} } = book;
+    const buttonActive = Object.keys(ibooktimes).length > 0;
     return (
       <Query query={TIMETABLE_DETAIL} variables={{ _id }}>
         {({ loading, error, data = {} }) => {
@@ -82,8 +86,13 @@ export default class ArticleDetail extends PureComponent {
 
                     <Book
                       onChange={(value) => {
-                        console.log('value');
-                        console.log(value);
+                        const { dispatch } = this.props;
+                        dispatch({
+                          type: 'book/save',
+                          payload: {
+                            ibooktimes: value,
+                          },
+                        });
                       }}
                       setting={timetable}
                     />
@@ -91,7 +100,10 @@ export default class ArticleDetail extends PureComponent {
                       variant="contained"
                       color="primary"
                       className={classes.submitButton}
-                      // onClick={onSubmit}
+                      disabled={!buttonActive}
+                      onClick={() => {
+                        Router.push('/');
+                      }}
                     >
                       选好时间了
                     </Button>
