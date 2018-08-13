@@ -100,6 +100,7 @@ export default class Index extends PureComponent {
                 </Card>
               ));
 
+
               // Router.push('/article');
             } catch (err) {
               console.log('err');

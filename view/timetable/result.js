@@ -57,8 +57,14 @@ export default class Index extends PureComponent {
             </Button>
           </CopyToClipboard>
 
-          <Button size="small" color="primary">
-                前往查看
+          <Button
+            onClick={() => {
+              window.location.href = url;
+            }}
+            size="small"
+            color="primary"
+          >
+            前往查看
           </Button>
         </CardActions>
       </Card>
