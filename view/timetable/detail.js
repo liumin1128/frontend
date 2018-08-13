@@ -23,7 +23,7 @@ const styles = theme => ({
     marginTop: 16,
     margin: '0 auto',
     display: 'block',
-    // padding: '16px 32px',
+    padding: '16px 32px',
   },
 });
 
@@ -102,7 +102,7 @@ export default class ArticleDetail extends PureComponent {
                       className={classes.submitButton}
                       disabled={!buttonActive}
                       onClick={() => {
-                        Router.push('/');
+                        Router.push(`/timetable/book?_id=${_id}`);
                       }}
                     >
                       选好时间了
