@@ -6,6 +6,20 @@ export const TIMETABLE_DETAIL = gql`
       __typename
       _id
       title
+      cover
+      description
+      startOfDay
+      endOfDay
+      startOfHour
+      endOfHour
+      timeRange
+      multi
+      times
+      createdAt
+      user {
+        nickname
+      }
+
     }
   }
 `;
