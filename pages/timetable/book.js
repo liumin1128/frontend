@@ -84,11 +84,22 @@ export default class Index extends PureComponent {
                 refetchQueries: ['TimetableList'],
               });
 
-              // const { modal } = this.props;
+              const { modal } = this.props;
 
 
               console.log('data');
               console.log(data);
+
+              modal(() => (
+                <Card className={classes.card}>
+                  <CardContent>
+                    <Typography gutterBottom variant="headline" component="h2">
+                      预订成功！通知已发送到您的邮箱！
+                    </Typography>
+                  </CardContent>
+                </Card>
+              ));
+
               // Router.push('/article');
             } catch (err) {
               console.log('err');
