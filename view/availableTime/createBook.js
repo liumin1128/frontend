@@ -22,14 +22,10 @@ import nossr from '@/hoc/nossr';
 // import { getStorage } from '@/utils/store';
 // import { isServerSide } from '@/utils/common';
 // import { STORE_USER_KEY } from '@/constants/base';
-
 const styles = theme => ({
   root: {
     maxWidth: 700,
     margin: '92px auto 32px',
-  },
-  appbar: {
-    // borderRadius: 5,
   },
   submitButton: {
     marginTop: 16,
@@ -38,6 +34,7 @@ const styles = theme => ({
     padding: '16px 32px',
   },
 });
+
 
 const formKeys = [
   {
@@ -63,32 +60,42 @@ const formKeys = [
   },
 ];
 
-const initialValue = {
-  startOfDay: moment().format('YYYY-MM-DD'),
-  endOfDay: moment().add(7, 'days').format('YYYY-MM-DD'),
-  startOfHour: 8,
-  endOfHour: 17,
-  timeRange: 60,
-  multi: true,
-};
+const initialValue = {};
 
 @connect(({ book }) => ({ book }))
-@withStyles(styles)
 @withRouter
+@withStyles(styles)
 @nossr
 export default class CreateArticle extends PureComponent {
   editor = createRef()
 
 
   onSubmit = (values) => {
-    console.log(values);
+    // console.log(values);
+    const { onSubmit } = this.props;
+    if (onSubmit) {
+      onSubmit(values);
+    }
   }
 
   validate = (values) => {
     const errors = {};
-    if (!values.title) {
-      errors.title = '标题不可以不填哦';
+
+    if (!values.firstName) {
+      errors.firstName = '姓不可以不填哦';
     }
+
+    if (!values.lastName) {
+      errors.lastName = '姓不可以不填哦';
+    }
+
+    if (!values.studentId) {
+      errors.studentId = '学号不可以不填哦';
+    }
+    if (!values.description) {
+      errors.description = '描述不可以不填哦';
+    }
+
 
     return errors;
   }
@@ -99,11 +106,11 @@ export default class CreateArticle extends PureComponent {
     //   return '尚未登录';
     // }
 
-    console.log('this.props');
-    console.log(this.props);
+    // console.log('this.props');
+    // console.log(this.props);
 
 
-    const { classes, book = {}, router } = this.props;
+    const { classes, book = {}, router, buttonDisabled } = this.props;
     const _id = router.query._id;
 
     const formData = book.setting ? {
@@ -111,74 +118,44 @@ export default class CreateArticle extends PureComponent {
     } : initialValue;
 
     return (
-      <Fragment>
-
-        <Head>
-          <link href="/static/draft-editor.css" rel="stylesheet" />
-        </Head>
-
-        <AppBar position="fixed" className={classes.appbar}>
-          <Toolbar>
-            <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-              onClick={() => {
-                Router.push(`/timetable/detail?_id=${_id}`);
-              }}
-            >
-              <ArrowBackIcon />
-            </IconButton>
-            <Typography variant="title" color="inherit" className={classes.flex}>
-              填写信息
-            </Typography>
-          </Toolbar>
-        </AppBar>
-
-        <Card className={classes.root}>
-
-
-          <CardContent>
-
-            <Form
-              onSubmit={this.onSubmit}
-              initialValues={formData}
+      <Form
+        onSubmit={this.onSubmit}
+        initialValues={formData}
               // values={formData}
-              validate={this.validate}
-              render={({ handleSubmit, reset, submitting, pristine, change, values }) => (
-                <form id="createArticleForm" onSubmit={handleSubmit}>
+        validate={this.validate}
+        render={({ handleSubmit, reset, submitting, pristine, change, values }) => (
+          <form id="createArticleForm" onSubmit={handleSubmit}>
 
-                  {
-                    formKeys.map(i => (
-                      <Field
-                        key={i.key}
-                        name={i.key}
-                        label={i.label}
-                        component={TextField}
-                        type="text"
-                        margin="normal"
-                        fullWidth
-                        value={formData[i.key]}
-                        {...i.props}
-                      />
-                    ))
-                  }
+            {
+              formKeys.map(i => (
+                <Field
+                  key={i.key}
+                  name={i.key}
+                  label={i.label}
+                  component={TextField}
+                  type="text"
+                  margin="normal"
+                  fullWidth
+                  value={formData[i.key]}
+                  {...i.props}
+                />
+              ))
+            }
 
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    className={classes.submitButton}
-                  >
-                    立即预订
-                  </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={classes.submitButton}
+              disabled={buttonDisabled}
+            >
+                立即预订
+            </Button>
 
-                </form>
-              )}
-            />
-          </CardContent>
-        </Card>
-      </Fragment>
+          </form>
+        )}
+      />
+
     );
   }
 }

@@ -14,6 +14,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Book from '../book/book';
 
+
 const styles = theme => ({
   root: {
     maxWidth: 700,
@@ -110,6 +111,8 @@ export default class ArticleDetail extends PureComponent {
                   </CardContent>
                 </Card>
               </div>
+
+
             </Fragment>
 
           );
