@@ -24,7 +24,7 @@ export default class Index extends PureComponent {
       <Card className={classes.card}>
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
-                      发布成功！
+            发布成功！
           </Typography>
           <Typography component="p">
             您的日程安排【
@@ -53,12 +53,12 @@ export default class Index extends PureComponent {
               size="small"
               color="primary"
             >
-                        复制到剪切板
+              复制到剪切板
             </Button>
           </CopyToClipboard>
 
           <Button size="small" color="primary">
-                      前往查看
+                前往查看
           </Button>
         </CardActions>
       </Card>
