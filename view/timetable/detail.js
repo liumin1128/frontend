@@ -29,6 +29,8 @@ export default class ArticleDetail extends PureComponent {
       <Query query={TIMETABLE_DETAIL} variables={{ _id }}>
         {({ loading, error, data = {} }) => {
           const { timetable = {} } = data;
+          console.log('timetable');
+          console.log(timetable);
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
           return (
@@ -53,9 +55,25 @@ export default class ArticleDetail extends PureComponent {
               </AppBar>
 
               <div className={classes.root}>
-                {timetable.title}
+
                 <Card>
                   <CardContent>
+                    <br />
+
+                    <Typography variant="title" color="inherit" className={classes.flex}>
+                      活动名：
+                      {timetable.title}
+                    </Typography>
+                    <br />
+                    <Typography variant="subheading" gutterBottom>
+                      简介：
+                      {timetable.description}
+                    </Typography>
+                    <Typography variant="subheading" gutterBottom>
+                      时间：
+                      {`${timetable.startOfDay} ~ ${timetable.endOfDay}`}
+                    </Typography>
+
                     <Book setting={timetable} />
                     <Button
                       variant="contained"

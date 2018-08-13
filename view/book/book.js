@@ -199,8 +199,8 @@ export default class Index extends PureComponent {
 
     const values = JSON.parse(times);
 
-    console.log('values');
-    console.log(values);
+    // console.log('values');
+    // console.log(values);
 
     return (
       <Fragment>
@@ -277,15 +277,9 @@ export default class Index extends PureComponent {
 
                           const dayX = moment().add(dayIndex, 'days').startOf('day').format('YYYY-MM-DD');
                           // console.log('dayX');
-                          console.log(dayX);
+                          // console.log(dayX);
 
                           const valueList = values[dayX] || [];
-
-                          if (valueList.length > 0) {
-                            console.log('valueList');
-                            console.log(valueList);
-                          }
-
 
                           const active = valueList.findIndex((v) => { return j.idx === v; }) !== -1;
                           return (
