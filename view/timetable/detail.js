@@ -18,6 +18,12 @@ const styles = theme => ({
     maxWidth: 700,
     margin: '92px auto 32px',
   },
+  submitButton: {
+    marginTop: 16,
+    margin: '0 auto',
+    display: 'block',
+    // padding: '16px 32px',
+  },
 });
 
 @withStyles(styles)
@@ -74,14 +80,20 @@ export default class ArticleDetail extends PureComponent {
                       {`${timetable.startOfDay} ~ ${timetable.endOfDay}`}
                     </Typography>
 
-                    <Book setting={timetable} />
+                    <Book
+                      onChange={(value) => {
+                        console.log('value');
+                        console.log(value);
+                      }}
+                      setting={timetable}
+                    />
                     <Button
                       variant="contained"
                       color="primary"
                       className={classes.submitButton}
                       // onClick={onSubmit}
                     >
-                      我要预订
+                      选好时间了
                     </Button>
                   </CardContent>
                 </Card>

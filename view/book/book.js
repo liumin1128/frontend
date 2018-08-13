@@ -43,7 +43,7 @@ const styles = theme => ({
     // margin: 2,
     // borderRadius: 2,
     fontSize: 10,
-    color: '#999',
+    color: '#ddd',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     '&:hover': {
@@ -53,6 +53,9 @@ const styles = theme => ({
       // background: '#f2f2f2',
 
     },
+  },
+  canuse: {
+    color: '#333',
   },
   active: {
     background: '#00B9F7',
@@ -77,10 +80,10 @@ export default class Index extends PureComponent {
   onSelect = ({ day, start, end, idx, active }) => {
     console.log('day, start, end, idx, active');
     console.log(day, start, end, idx, active);
-
-    return false;
-
     const { values } = this.state;
+    if (!values[day]) {
+      values[day] = [];
+    }
 
     if (active) {
       const index = values[day].findIndex(i => i === idx);
@@ -100,80 +103,7 @@ export default class Index extends PureComponent {
     }
 
     this.setValue({ ...values });
-  }
-
-
-  onMutiSelectStart = (x, y) => {
-    // 获取多选开始坐标并记录
-    // console.log(x, y);
-    this.setState({
-      xyTemp: { x, y },
-    });
-  }
-
-  onMutiSelectEnd = (_x, _y) => {
-    // 获取多选开始坐标）
-    const { xyTemp: { x, y } } = this.state;
-    // console.log(x, y);
-
-    // 如果检测到开始坐标与结束坐标一致，则该事件已在点击事件中处理，这边忽略即可
-    if (x === _x && y === _y) return;
-
-    // 由于不知道用户选择的方向性，故默认较将小的作为开始点
-    let x0;
-    let y0;
-    let x1;
-    let y1;
-
-    if (x < _x) {
-      x0 = x;
-      x1 = _x;
-    } else {
-      x0 = _x;
-      x1 = x;
-    }
-
-    if (y < _y) {
-      y0 = y;
-      y1 = _y;
-    } else {
-      y0 = _y;
-      y1 = y;
-    }
-
-    // 至此得到了矩形左上角 => 右下角的两个坐标
-    console.log(x0, y0, x1, y1);
-
-    const { values } = this.state;
-
-    // 在一个二维循环中对数值进行操作
-    for (let i = 0; i <= x1 - x0; i += 1) {
-      const startX = moment().add(x0 + i, 'days').startOf('day').format('YYYY-MM-DD');
-      for (let j = 0; j <= y1 - y0; j += 1) {
-        // values[startX].push();
-        if (!values[startX]) values[startX] = [];
-        const isSelected = values[startX].findIndex(d => d === y0 + j);
-        if (isSelected === -1) {
-          // console.log(index);
-          const value = y0 + j;
-          const index = values[startX].findIndex(d => d > value);
-
-          if (index === -1) {
-            values[startX].push(value);
-          } else {
-            values[startX].splice(index, 0, value);
-          }
-          values[startX].push();
-        }
-      }
-    }
-
-    // 保存数据并清空开始坐标
-    this.setState({
-      xyTemp: {},
-    });
-
-    this.setValue({ ...values });
+    return false;
   }
 
   setValue = (values) => {
@@ -185,7 +115,7 @@ export default class Index extends PureComponent {
   }
 
   render() {
-    const { type } = this.state;
+    const { type, values } = this.state;
     const { classes, setting = {} } = this.props;
 
     const { startOfHour, endOfHour, startOfDay, endOfDay, timeRange, times } = setting;
@@ -197,10 +127,11 @@ export default class Index extends PureComponent {
       .map((i, index) => index);
 
 
-    const values = JSON.parse(times);
+    const canuseList = JSON.parse(times);
 
-    // console.log('values');
-    // console.log(values);
+    // console.log('canuseList');
+    // console.log(canuseList);
+
 
     return (
       <Fragment>
@@ -270,22 +201,34 @@ export default class Index extends PureComponent {
                         </div>
 
                         {temp.map((j, timeIndex) => {
-                          // console.log(values);
+                          // console.log(canuseList);
 
-                          // console.log('values');
-                          // console.log(values);
+                          let canuse;
+                          let active;
+                          const dayX = moment(startOfDay).add(dayIndex, 'days').startOf('day').format('YYYY-MM-DD');
 
-                          const dayX = moment().add(dayIndex, 'days').startOf('day').format('YYYY-MM-DD');
-                          // console.log('dayX');
-                          // console.log(dayX);
+                          // 排除开始日期以前的日期
+                          if (moment(startOfDay).add(dayIndex, 'days').startOf('day').format('x') < moment().startOf('day').format('x')) {
+                            active = false;
+                            canuse = false;
+                          } else {
+                            const canList = canuseList[dayX] || [];
+                            canuse = canList.findIndex((v) => { return j.idx === v; }) !== -1;
 
-                          const valueList = values[dayX] || [];
+                            const valueList = values[dayX] || [];
+                            active = valueList.findIndex((v) => { return j.idx === v; }) !== -1;
+                          }
 
-                          const active = valueList.findIndex((v) => { return j.idx === v; }) !== -1;
 
+                          // console.log('canuseList');
+                          // console.log(canuseList);
+
+                          // console.log('valueList');
+                          // console.log(valueList);
                           return (
                             <ButtonBase
-                              className={classes.item + (active ? ` ${classes.active}` : '')}
+                              disabled={!canuse}
+                              className={classes.item + (canuse ? ` ${classes.canuse}` : '') + (active ? ` ${classes.active}` : '')}
                               onClick={() => {
                                 this.onSelect({ day: dayX, start: j.start, end: j.end, idx: j.idx, active });
                               }}
@@ -295,14 +238,6 @@ export default class Index extends PureComponent {
                                   child: classes.ripple,
                                 },
                               }}
-                              // onMouseDown={() => {
-                              //   // console.log(dayIndex, j.idx);
-                              //   this.onMutiSelectStart(dayIndex, j.idx);
-                              // }}
-                              // onMouseUp={() => {
-                              //   // console.log(dayIndex, j.idx);
-                              //   this.onMutiSelectEnd(dayIndex, j.idx);
-                              // }}
                             >
                               {
                                 moment()
