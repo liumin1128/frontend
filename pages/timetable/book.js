@@ -1,9 +1,10 @@
 import React, { PureComponent, Fragment } from 'react';
-import { CREATE_TIMETABLE } from '@/graphql/timetable';
+import { CREATE_BOOK } from '@/graphql/book';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { Mutation } from 'react-apollo';
+import { withRouter } from 'next/router';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
@@ -17,9 +18,9 @@ import Typography from '@material-ui/core/Typography';
 import Snackbar from '@/components/snackbar';
 import Book from '@/view/book';
 import { modalConsumer } from '@/hoc/widthModal';
-import TimetableView from '@/view/timetable/result';
 import pp from '@/hoc/pp';
 import Form from '@/view/availableTime/createBook';
+import { create } from 'domain';
 
 const styles = theme => ({
   root: {
@@ -48,6 +49,7 @@ const styles = theme => ({
 
 @connect(({ book }) => ({ ...book }))
 @withStyles(styles)
+@withRouter
 @modalConsumer
 export default class Index extends PureComponent {
   constructor(props) {
@@ -61,36 +63,32 @@ export default class Index extends PureComponent {
     const { classes } = this.props;
 
     return (
-      <Mutation mutation={CREATE_TIMETABLE}>
-        {(createTimetable, { loading, error, data = {} }) => {
+      <Mutation mutation={CREATE_BOOK}>
+        {(createBook, { loading, error, data = {} }) => {
           const onSubmit = async (values) => {
-            const { ibooktimes } = this.props;
+            const { ibooktimes, router } = this.props;
 
 
             const input = {
               ...values,
+              timetable: router.query._id,
               times: JSON.stringify(ibooktimes),
             };
 
             console.log(input);
 
 
-            return false;
-
-
             try {
-              const { data } = await createTimetable({
+              const { data } = await createBook({
                 variables: { input },
                 refetchQueries: ['TimetableList'],
               });
 
-              const { modal } = this.props;
-
-              modal(pp(TimetableView, { timetable: data.item }));
+              // const { modal } = this.props;
 
 
-              // console.log('result');
-              // console.log(result);
+              console.log('data');
+              console.log(data);
               // Router.push('/article');
             } catch (err) {
               console.log('err');
