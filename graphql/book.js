@@ -1,54 +1,40 @@
 import gql from 'graphql-tag';
 
-// export const ARTICLE_DETAIL = gql`
-//   query ArticleDetail($_id: String!) {
-//     article: article(_id: $_id) {
-//       __typename
-//       _id
-//       title
-//       cover
-//       content
-//       createdAt
-//       user {
-//         nickname
-//         avatarUrl
-//       }
-//     }
-//   }
-// `;
+export const BOOK_DETAIL = gql`
+  query BookDetail($_id: String!) {
+    book: book(_id: $_id) {
+      __typename
+      _id
+      description
+      timetable {
+        _id
+        title
+      }
+    }
+  }
+`;
 
-// export const ARTICLE_LIST = gql`
-//   query ArticleList($first: Int!, $skip: Int!) {
-//     list: articles(first: $first, skip: $skip) {
-//       __typename
-//       _id
-//       title
-//       cover
-//       content
-//       createdAt
-//       user {
-//         nickname
-//         avatarUrl
-//       }
-//     }
-//     meta: _articlesMeta {
-//       count
-//     }
-//   }
-// `;
+export const BOOK_LIST = gql`
+  query BookList($first: Int!, $skip: Int!) {
+    list: books(first: $first, skip: $skip) {
+      __typename
+      _id
+    }
+    meta: _booksMeta {
+      count
+    }
+  }
+`;
 
-// export const CREATE_AVAILABLETIME = gql`
-//   mutation ($input: AvaliableTimeInput) {
-//     item: createAvaliableTime(input: $input) {
-//       __typename
-//       _id
-//       title
-//       content
-//       createdAt
-//       user {
-//         nickname
-//         avatarUrl
-//       }
-//     }
-//   }
-// `;
+export const CREATE_BOOK = gql`
+  mutation ($input: BookInput) {
+    item: createBook(input: $input) {
+      __typename
+      _id
+      timetable {
+        _id
+        title
+      }
+    }
+  }
+`;
