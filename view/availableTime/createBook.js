@@ -49,7 +49,10 @@ const formKeys = [
     key: 'studentId',
     label: '学号',
   },
-
+  {
+    key: 'email',
+    label: '接收通知的邮箱',
+  },
   {
     key: 'description',
     label: '备注',
@@ -94,6 +97,9 @@ export default class CreateArticle extends PureComponent {
     }
     if (!values.description) {
       errors.description = '描述不可以不填哦';
+    }
+    if (!values.email) {
+      errors.email = '邮箱不可以不填哦';
     }
 
 

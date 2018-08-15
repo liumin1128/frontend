@@ -153,10 +153,10 @@ const formKeys = [
     },
 
   },
-  // {
-  //   key: 'email',
-  //   label: '邮箱',
-  // },
+  {
+    key: 'email',
+    label: '接收通知的邮箱',
+  },
   {
     key: 'description',
     label: 'Remark',
@@ -204,6 +204,14 @@ export default class CreateArticle extends PureComponent {
     const errors = {};
     if (!values.title) {
       errors.title = 'please fill the booking page title ';
+    }
+
+    if (!values.email) {
+      errors.email = '邮箱不可以不填哦';
+    }
+
+    if (!values.description) {
+      errors.description = '描述不可以不填哦';
     }
 
     return errors;
