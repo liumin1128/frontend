@@ -72,16 +72,16 @@ export default class ArticleDetail extends PureComponent {
                     <br />
 
                     <Typography variant="title" color="inherit" className={classes.flex}>
-                      活动名：
+                     meeting title:
                       {timetable.title}
                     </Typography>
                     <br />
                     <Typography variant="subheading" gutterBottom>
-                      简介：
+                      introduction:
                       {timetable.description}
                     </Typography>
                     <Typography variant="subheading" gutterBottom>
-                      时间：
+                      time：
                       {`${timetable.startOfDay} ~ ${timetable.endOfDay}`}
                     </Typography>
 
@@ -106,7 +106,7 @@ export default class ArticleDetail extends PureComponent {
                         Router.push(`/timetable/book?_id=${_id}`);
                       }}
                     >
-                      选好时间了
+                      submit
                     </Button>
                   </CardContent>
                 </Card>

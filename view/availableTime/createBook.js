@@ -39,23 +39,23 @@ const styles = theme => ({
 const formKeys = [
   {
     key: 'firstName',
-    label: '名',
+    label: 'fistname',
   },
   {
     key: 'lastName',
-    label: '姓',
+    label: 'lastname',
   },
   {
     key: 'studentId',
-    label: '学号',
+    label: 'student number',
   },
   {
     key: 'email',
-    label: '接收通知的邮箱',
+    label: 'Email address for notification',
   },
   {
     key: 'description',
-    label: '备注',
+    label: 'remark：（what does the meeting concern?   in what capacity do you wish to see me?  ）',
     props: {
       multiline: true,
       rows: 4,

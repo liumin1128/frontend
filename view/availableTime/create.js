@@ -155,11 +155,11 @@ const formKeys = [
   },
   {
     key: 'email',
-    label: '接收通知的邮箱',
+    label: 'Email address for notification',
   },
   {
     key: 'description',
-    label: 'Remark',
+    label: 'Remark ：',
     props: {
       multiline: true,
       rows: 4,
@@ -207,11 +207,11 @@ export default class CreateArticle extends PureComponent {
     }
 
     if (!values.email) {
-      errors.email = '邮箱不可以不填哦';
+      errors.email = 'please fill the email address title';
     }
 
     if (!values.description) {
-      errors.description = '描述不可以不填哦';
+      errors.description = 'Please leave some information that you want your students to notice or comment on';
     }
 
     return errors;
