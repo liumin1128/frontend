@@ -279,7 +279,7 @@ export default class CreateArticle extends PureComponent {
                     color="primary"
                     className={classes.submitButton}
                   >
-                  I've filled it out. Let's pick the time period!
+                  I've filled it. Let's pick the time period!
                   </Button>
 
                 </form>
