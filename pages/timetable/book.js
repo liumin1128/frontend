@@ -1,26 +1,19 @@
 import React, { PureComponent, Fragment } from 'react';
 import { CREATE_BOOK } from '@/graphql/book';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { Mutation } from 'react-apollo';
 import { withRouter } from 'next/router';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Router from 'next/router';
-import Button from '@material-ui/core/Button';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Snackbar from '@/components/snackbar';
-import Book from '@/view/book';
 import { modalConsumer } from '@/hoc/widthModal';
-import pp from '@/hoc/pp';
 import Form from '@/view/availableTime/createBook';
-import { create } from 'domain';
 
 const styles = theme => ({
   root: {
@@ -28,13 +21,11 @@ const styles = theme => ({
     margin: '92px auto 32px',
   },
   appbar: {
-    // borderRadius: 5,
   },
   submitButton: {
     marginTop: 16,
     margin: '0 auto',
     display: 'block',
-    // padding: '16px 32px',
   },
   menuButton: {
     marginLeft: -12,
@@ -94,18 +85,14 @@ export default class Index extends PureComponent {
                 <Card className={classes.card}>
                   <CardContent>
                     <Typography gutterBottom variant="headline" component="h2">
-                      预订成功！通知已发送到您的邮箱！
+                      your meeting is booked！The confirmation email has been sent ！
                     </Typography>
                   </CardContent>
                 </Card>
               ));
-
-
-              // Router.push('/article');
             } catch (err) {
               console.log('err');
               console.log(err);
-              // Snackbar.error('文章发布失败');
             }
           };
 
@@ -126,7 +113,7 @@ export default class Index extends PureComponent {
                     <ArrowBackIcon />
                   </IconButton>
                   <Typography variant="title" color="inherit" className={classes.flex}>
-                    选择可用时间
+                    choose your availableTime
                   </Typography>
                 </Toolbar>
               </AppBar>
