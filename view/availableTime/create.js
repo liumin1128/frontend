@@ -258,20 +258,20 @@ export default class CreateArticle extends PureComponent {
                 <form id="createArticleForm" onSubmit={handleSubmit}>
 
                   {
-                          formKeys.map(i => (
-                            <Field
-                              key={i.key}
-                              name={i.key}
-                              label={i.label}
-                              component={TextField}
-                              type="text"
-                              margin="normal"
-                              fullWidth
-                              value={formData[i.key]}
-                              {...i.props}
-                            />
-                          ))
-                        }
+                    formKeys.map(i => (
+                      <Field
+                        key={i.key}
+                        name={i.key}
+                        label={i.label}
+                        component={TextField}
+                        type="text"
+                        margin="normal"
+                        fullWidth
+                        value={formData[i.key]}
+                        {...i.props}
+                      />
+                    ))
+                  }
 
                   <Button
                     type="submit"
@@ -279,7 +279,7 @@ export default class CreateArticle extends PureComponent {
                     color="primary"
                     className={classes.submitButton}
                   >
-                  I've filled it out. Let's pick the time period!
+                    I've filled it out. Let's pick the time period!
                   </Button>
 
                 </form>

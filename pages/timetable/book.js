@@ -94,7 +94,12 @@ export default class Index extends PureComponent {
                 <Card className={classes.card}>
                   <CardContent>
                     <Typography gutterBottom variant="headline" component="h2">
-                      预订成功！通知已发送到您的邮箱！
+                      预订成功！
+                      {input.email}
+                    </Typography>
+                    <Typography gutterBottom variant="headline" component="p">
+                      通知已发送到您的邮箱：
+                      {input.email}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -109,6 +114,8 @@ export default class Index extends PureComponent {
             }
           };
 
+          const { router } = this.props;
+
           return (
             <Fragment>
 
@@ -120,7 +127,7 @@ export default class Index extends PureComponent {
                     color="inherit"
                     aria-label="Menu"
                     onClick={() => {
-                      Router.push('/book/setting');
+                      Router.push(`/timetable/detail?_id=${router.query._id}`);
                     }}
                   >
                     <ArrowBackIcon />
