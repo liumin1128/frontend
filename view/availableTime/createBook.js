@@ -1,27 +1,13 @@
 import React, { PureComponent, Fragment, createRef } from 'react';
-// import { Mutation } from 'react-apollo';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import Head from 'next/head';
-import AppBar from '@material-ui/core/AppBar';
 import { withStyles } from '@material-ui/core/styles';
 import Router, { withRouter } from 'next/router';
-
 import { Form, Field } from 'react-final-form';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-// import Snackbar from '@/components/snackbar';
 import TextField from '@/components/form/textField';
-// import { CREATE_AVAILABLETIME } from '@/graphql/book';
 import nossr from '@/hoc/nossr';
-// import { getStorage } from '@/utils/store';
-// import { isServerSide } from '@/utils/common';
-// import { STORE_USER_KEY } from '@/constants/base';
+
 const styles = theme => ({
   root: {
     maxWidth: 700,
@@ -39,23 +25,23 @@ const styles = theme => ({
 const formKeys = [
   {
     key: 'firstName',
-    label: '名',
+    label: 'fistname',
   },
   {
     key: 'lastName',
-    label: '姓',
+    label: 'lastname',
   },
   {
     key: 'studentId',
-    label: '学号',
+    label: 'student number',
   },
   {
     key: 'email',
-    label: '接收通知的邮箱',
+    label: 'Email address for notification',
   },
   {
     key: 'description',
-    label: '备注',
+    label: 'remark：（what does the meeting concern?   in what capacity do you wish to see me?  ）',
     props: {
       multiline: true,
       rows: 4,
@@ -85,21 +71,21 @@ export default class CreateArticle extends PureComponent {
     const errors = {};
 
     if (!values.firstName) {
-      errors.firstName = '姓不可以不填哦';
+      errors.firstName = 'please fill the first name';
     }
 
     if (!values.lastName) {
-      errors.lastName = '姓不可以不填哦';
+      errors.lastName = 'please fill the lastname';
     }
 
     if (!values.studentId) {
-      errors.studentId = '学号不可以不填哦';
+      errors.studentId = 'please fill the studentID';
     }
     if (!values.description) {
-      errors.description = '描述不可以不填哦';
+      errors.description = 'please fill the remark';
     }
     if (!values.email) {
-      errors.email = '邮箱不可以不填哦';
+      errors.email = 'please fill the eamil address';
     }
 
 
@@ -155,7 +141,7 @@ export default class CreateArticle extends PureComponent {
               className={classes.submitButton}
               disabled={buttonDisabled}
             >
-                立即预订
+                book meeting
             </Button>
 
           </form>
