@@ -85,16 +85,7 @@ export default class Index extends PureComponent {
                 <Card className={classes.card}>
                   <CardContent>
                     <Typography gutterBottom variant="headline" component="h2">
-<<<<<<< HEAD
-                      预订成功！
-                      {input.email}
-                    </Typography>
-                    <Typography gutterBottom variant="headline" component="p">
-                      通知已发送到您的邮箱：
-                      {input.email}
-=======
                       your meeting is booked！The confirmation email has been sent ！
->>>>>>> d603c0c2ff914b597907cd2d5c94316aaea19cdf
                     </Typography>
                   </CardContent>
                 </Card>
