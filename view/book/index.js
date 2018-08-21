@@ -4,9 +4,7 @@ import moment from 'moment';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { withStyles } from '@material-ui/core/styles';
 
-
 /* eslint-disable no-case-declarations */
-
 
 const styles = theme => ({
   container: {
@@ -104,7 +102,6 @@ export default class Index extends PureComponent {
 
     this.setValue({ ...values });
   }
-
 
   onMutiSelectStart = (x, y) => {
     // 获取多选开始坐标并记录
