@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import AddCircleIcon from '@material-ui/icons/Add';
 
 const styles = theme => ({
   input: {
@@ -22,6 +23,7 @@ const styles = theme => ({
   button: {
     // fontSize: 20,
     marginBottom: 16,
+    background: 'rgba(22,200,200,0.03)',
   },
 });
 
@@ -46,11 +48,14 @@ export default class Index extends PureComponent {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button className={classes.button} size="large" color="primary">
-            创建活动
+            <Button raised className={classes.button} size="large" color="primary">
+              创建活动
             </Button>
             <Button className={classes.button} size="large" color="primary">
-            加入活动
+              加入活动
+            </Button>
+            <Button className={classes.button} size="large" color="primary">
+              个人中心
             </Button>
           </CardActions>
         </Card>
