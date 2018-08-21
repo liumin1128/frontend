@@ -55,7 +55,7 @@ export default class Index extends PureComponent {
               </Button>
             </Link>
 
-            <Link href={'/timetable/join'}>
+            <Link href={'/timetable'}>
               <Button size="large" color="primary">
                 加入活动
               </Button>
