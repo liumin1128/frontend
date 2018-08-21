@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import Loading from '@/components/loading';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = theme => ({
   input: {
@@ -26,6 +26,9 @@ const styles = theme => ({
     marginBottom: 16,
     background: 'rgba(22,200,200,0.03)',
   },
+  progress: {
+    margin: theme.spacing.unit * 2,
+  },
 });
 
 @withStyles(styles)
@@ -34,7 +37,6 @@ export default class Index extends PureComponent {
     const { classes } = this.props;
     return (
       <Fragment>
-        <Loading />
         <Card className={classes.card}>
           <CardMedia
             className={classes.media}
@@ -42,29 +44,15 @@ export default class Index extends PureComponent {
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography gutterBottom variant="headline" component="h2">
-              Welcome!
-            </Typography>
+
             <Typography color="textSecondary">
-              欢迎使用智能预约系统
+              loading...
             </Typography>
+            <CircularProgress className={classes.progress} />
+
           </CardContent>
-          <CardActions>
-            <Link href={'/timetable/create'}>
-              <Button raised className={classes.button} size="large" color="primary">
-                创建活动
-              </Button>
-            </Link>
-            <Button className={classes.button} size="large" color="primary">
-              加入活动
-            </Button>
-            <Button className={classes.button} size="large" color="primary">
-              个人中心
-            </Button>
-          </CardActions>
         </Card>
       </Fragment>
-
     );
   }
 }
