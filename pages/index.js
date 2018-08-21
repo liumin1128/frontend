@@ -44,7 +44,7 @@ export default class Index extends PureComponent {
             <Typography gutterBottom variant="headline" component="h2">
               Welcome!
             </Typography>
-            <Typography component="p">
+            <Typography color="textSecondary">
               欢迎使用智能预约系统
             </Typography>
           </CardContent>
