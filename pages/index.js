@@ -7,7 +7,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import Loading from '@/components/loading';
 
 const styles = theme => ({
   input: {
@@ -34,7 +33,6 @@ export default class Index extends PureComponent {
     const { classes } = this.props;
     return (
       <Fragment>
-        <Loading />
         <Card className={classes.card}>
           <CardMedia
             className={classes.media}
@@ -55,12 +53,19 @@ export default class Index extends PureComponent {
                 创建活动
               </Button>
             </Link>
-            <Button className={classes.button} size="large" color="primary">
-              加入活动
-            </Button>
-            <Button className={classes.button} size="large" color="primary">
+
+            <Link href={'/timetable/join'}>
+              <Button className={classes.button} size="large" color="primary">
+                加入活动
+              </Button>
+            </Link>
+
+            <Link href={'/mine'}>
+              <Button className={classes.button} size="large" color="primary">
               个人中心
-            </Button>
+              </Button>
+            </Link>
+
           </CardActions>
         </Card>
       </Fragment>
