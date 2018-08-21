@@ -48,26 +48,7 @@ export default class Index extends PureComponent {
               欢迎使用智能预约系统
             </Typography>
           </CardContent>
-          <CardActions>
-            <Link href={'/timetable/create'}>
-              <Button raised className={classes.button} size="large" color="primary">
-                创建活动
-              </Button>
-            </Link>
 
-            <Link href={'/timetable'}>
-              <Button size="large" color="primary">
-                加入活动
-              </Button>
-            </Link>
-
-            <Link href={'/me'}>
-              <Button size="large" color="primary">
-              个人中心
-              </Button>
-            </Link>
-
-          </CardActions>
         </Card>
       </Fragment>
 
