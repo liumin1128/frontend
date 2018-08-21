@@ -114,7 +114,7 @@ export default class Index extends PureComponent {
                     color="inherit"
                     aria-label="Menu"
                     onClick={() => {
-                      Router.push('/book/setting');
+                      Router.push('/timetable/create');
                     }}
                   >
                     <ArrowBackIcon />

@@ -1,6 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
+import Link from 'next/link';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -48,9 +49,11 @@ export default class Index extends PureComponent {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button raised className={classes.button} size="large" color="primary">
-              创建活动
-            </Button>
+            <Link href={'/timetable/create'}>
+              <Button raised className={classes.button} size="large" color="primary">
+                创建活动
+              </Button>
+            </Link>
             <Button className={classes.button} size="large" color="primary">
               加入活动
             </Button>
