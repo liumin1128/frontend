@@ -15,6 +15,7 @@ const styles = theme => ({
   card: {
     maxWidth: 500,
     margin: '50px auto',
+    paddingBottom: 16,
   },
   media: {
     height: 0,
@@ -22,8 +23,8 @@ const styles = theme => ({
   },
   button: {
     // fontSize: 20,
-    marginBottom: 16,
-    background: 'rgba(22,200,200,0.03)',
+    // marginBottom: 16,
+    background: 'rgba(22,200,200,0.05)',
   },
 });
 
@@ -55,13 +56,13 @@ export default class Index extends PureComponent {
             </Link>
 
             <Link href={'/timetable/join'}>
-              <Button className={classes.button} size="large" color="primary">
+              <Button size="large" color="primary">
                 加入活动
               </Button>
             </Link>
 
             <Link href={'/mine'}>
-              <Button className={classes.button} size="large" color="primary">
+              <Button size="large" color="primary">
               个人中心
               </Button>
             </Link>
