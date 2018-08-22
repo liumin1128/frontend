@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'next/router';
 import { getStorage, setStorage } from '@/utils/store';
 import { STORE_USER_KEY, PATH_BEFORLOGIN } from '@/constants/base';
+import Button from '@material-ui/core/Button';
+import Layout from '@/components/layout';
 import nossr from './nossr';
+
 
 @nossr
 @connect(({ user }) => ({ user }))
@@ -45,12 +48,15 @@ export default class Auth extends PureComponent {
 
       return (
         <Fragment>
-          <div style={{ padding: 50 }}>
-
-            <a href="http://localhost:3101/oauth/outlook">
-                login account
-            </a>
-          </div>
+          <Layout>
+            <div style={{ padding: 50 }}>
+              <a href="http://localhost:3101/oauth/outlook">
+                <Button color="primary" size="large">
+                  Login
+                </Button>
+              </a>
+            </div>
+          </Layout>
         </Fragment>
       );
     }
