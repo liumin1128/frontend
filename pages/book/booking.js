@@ -21,7 +21,7 @@ import Layout from '@/components/layout';
 const styles = theme => ({
   root: {
     maxWidth: 700,
-    margin: '92px auto 32px',
+    margin: '0px auto 16px',
   },
   appbar: {
     // borderRadius: 5,
@@ -108,44 +108,45 @@ export default class Index extends PureComponent {
             return (
               <Fragment>
 
-                <AppBar position="fixed" className={classes.appbar}>
+                <AppBar position="static" className={classes.appbar}>
 
-                <Toolbar>
-                  <IconButton
-                    className={classes.menuButton}
-                    color="inherit"
-                    aria-label="Menu"
-                    onClick={() => {
-                      Router.push('/timetable/create');
-                    }}
-                  >
-                    <ArrowBackIcon />
-                  </IconButton>
-                  <Typography variant="title" color="inherit" className={classes.flex}>
+                  <Toolbar>
+                    <IconButton
+                      className={classes.menuButton}
+                      color="inherit"
+                      aria-label="Menu"
+                      onClick={() => {
+                        Router.push('/timetable/create');
+                      }}
+                    >
+                      <ArrowBackIcon />
+                    </IconButton>
+                    <Typography variant="title" color="inherit" className={classes.flex}>
                   Select available time
-                  </Typography>
-                </Toolbar>
-              </AppBar>
+                    </Typography>
+                  </Toolbar>
+                </AppBar>
 
                 <div className={classes.root}>
-                <div className={classes.tip}>
-                Click to select the available time period
-                click and drag to select more than one at a time
-                </div>
-                <Card>
-                  <CardContent>
-                    <Book onChange={this.onChange} />
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      className={classes.submitButton}
-                      onClick={onSubmit}
-                    >
+
+                  <div>
+                    <CardContent>
+                      <div className={classes.tip}>
+                    Click to select the available time period
+                    click and drag to select more than one at a time
+                      </div>
+                      <Book onChange={this.onChange} />
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.submitButton}
+                        onClick={onSubmit}
+                      >
                     I have chosen the time
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
+                      </Button>
+                    </CardContent>
+                  </div>
+                </div>
 
               </Fragment>
             );
