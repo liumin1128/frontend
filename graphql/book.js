@@ -43,3 +43,12 @@ export const CREATE_BOOK = gql`
     }
   }
 `;
+
+
+export const DELETE_BOOK = gql`
+  mutation ($id: String!) {
+    item: deleteBook(id: $id) {
+      __typename
+    }
+  }
+`;

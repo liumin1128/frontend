@@ -1,14 +1,20 @@
 import React, { PureComponent, Fragment } from 'react';
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { BOOK_LIST } from '@/graphql/book';
+import { BOOK_LIST, DELETE_BOOK } from '@/graphql/book';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
+import Button from '@material-ui/core/Button';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { modalConsumer } from '@/hoc/widthModal';
 
 const styles = theme => ({
   root: {
@@ -25,34 +31,74 @@ const styles = theme => ({
 
 @connect(({ book }) => ({ book }))
 @withStyles(styles)
-export default class TimetableList extends PureComponent {
+@modalConsumer
+export default class BookList extends PureComponent {
   render() {
+    const { modal } = this.props;
     return (
       <Query query={BOOK_LIST} variables={{ skip: 0, first: 999 }}>
         {({ loading, error, data = {} }) => {
           const { list } = data;
-          console.log('list');
-          console.log(list);
+          // console.log('list');
+          // console.log(list);
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
           return (
-            <Fragment>
-              <List>
-                {
-                  list.map(i => (
-                    <ListItem>
-                      <Avatar>
-                        <ImageIcon />
-                      </Avatar>
-                      <ListItemText
-                        primary={`已参加：${i.timetable.title}`}
-                        secondary={moment(i.createdAt).format('llll')}
-                      />
-                    </ListItem>
-                  ))
-                }
-              </List>
-            </Fragment>
+            <Mutation mutation={DELETE_BOOK}>
+              {(deleteBook, { loading, error }) => {
+                const onDelete = async (id) => {
+                  const result = await deleteBook({ variables: { id }, refetchQueries: ['BookList'] });
+                  console.log('result');
+                  console.log(result);
+                };
+                const showModal = id => modal(({ close }) => (
+                  <Fragment>
+                    <DialogTitle id="alert-dialog-title">
+                      取消本次活动？
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                        是否删除
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={close} color="primary">
+                        取消
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          onDelete(id);
+                          close();
+                        }}
+                        color="primary"
+                        autoFocus
+                      >
+                        确认
+                      </Button>
+                    </DialogActions>
+                  </Fragment>
+                ));
+                return (
+                  <Fragment>
+                    <List>
+                      {
+                        list.map(i => (
+                          <ListItem onClick={() => showModal(i._id)}>
+                            <Avatar>
+                              <ImageIcon />
+                            </Avatar>
+                            <ListItemText
+                              primary={`已参加：${i.timetable.title}`}
+                              secondary={moment(i.createdAt).format('llll')}
+                            />
+                          </ListItem>
+                        ))
+                      }
+                    </List>
+                  </Fragment>
+                );
+              }}
+            </Mutation>
           );
         }}
       </Query>
