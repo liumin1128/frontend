@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import Me from '@/view/me';
 
 const styles = theme => ({
   input: {
@@ -40,15 +41,8 @@ export default class Index extends PureComponent {
             image="/static/images/1.jpg"
             title="Contemplative Reptile"
           />
-          <CardContent>
-            <Typography gutterBottom variant="headline" component="h2">
-              Welcome!
-            </Typography>
-            <Typography color="textSecondary">
-              欢迎使用智能预约系统
-            </Typography>
-          </CardContent>
 
+          <Me />
         </Card>
       </Fragment>
 

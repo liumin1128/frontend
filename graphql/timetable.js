@@ -30,6 +30,7 @@ export const TIMETABLE_LIST = gql`
       __typename
       _id
       title
+      createdAt
     }
     meta: _timetablesMeta {
       count
