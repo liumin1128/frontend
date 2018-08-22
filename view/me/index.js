@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
 import TimetableList from './list/timetable';
+import BookList from './list/book';
 
 function TabContainer(props) {
   return (
@@ -49,11 +50,7 @@ class SimpleTabs extends PureComponent {
           </Tabs>
         </AppBar>
         {value === 0 && <TimetableList />}
-        {value === 1 && (
-        <TabContainer>
-          Item Two
-        </TabContainer>
-        )}
+        {value === 1 && <BookList />}
 
       </div>
     );

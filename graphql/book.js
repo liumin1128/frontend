@@ -19,6 +19,11 @@ export const BOOK_LIST = gql`
     list: books(first: $first, skip: $skip) {
       __typename
       _id
+      createdAt
+      timetable {
+        _id
+        title
+      }
     }
     meta: _booksMeta {
       count
