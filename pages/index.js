@@ -45,25 +45,25 @@ export default class Index extends PureComponent {
               Welcome!
             </Typography>
             <Typography color="textSecondary">
-              欢迎使用智能预约系统
+               welcome meeting scheduler
             </Typography>
           </CardContent>
           <CardActions>
             <Link href={'/timetable/create'}>
               <Button raised className={classes.button} size="large" color="primary">
-                创建活动
+                create meeting sheculer
               </Button>
             </Link>
 
             <Link href={'/timetable'}>
               <Button size="large" color="primary">
-                加入活动
+                book a meeting
               </Button>
             </Link>
 
             <Link href={'/me'}>
               <Button size="large" color="primary">
-              个人中心
+              personal center
               </Button>
             </Link>
 
