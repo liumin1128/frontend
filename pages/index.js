@@ -45,7 +45,7 @@ export default class Index extends PureComponent {
               Welcome!
             </Typography>
             <Typography color="textSecondary">
-               welcome meeting scheduler
+               welcome to smart meeting scheduler
             </Typography>
           </CardContent>
           <CardActions>
