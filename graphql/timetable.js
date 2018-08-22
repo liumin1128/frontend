@@ -47,3 +47,12 @@ export const CREATE_TIMETABLE = gql`
     }
   }
 `;
+
+
+export const DELETE_TIMETABLE = gql`
+  mutation ($id: String!) {
+    item: deleteTimetable(id: $id) {
+      __typename
+    }
+  }
+`;
