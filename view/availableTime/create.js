@@ -23,7 +23,7 @@ import nossr from '@/hoc/nossr';
 const styles = theme => ({
   root: {
     maxWidth: 700,
-    margin: '92px auto 32px',
+    margin: '0px auto 16px',
   },
   appbar: {
     // borderRadius: 5,
@@ -236,7 +236,7 @@ export default class CreateArticle extends PureComponent {
           <link href="/static/draft-editor.css" rel="stylesheet" />
         </Head>
 
-        <AppBar position="fixed" className={classes.appbar}>
+        <AppBar position="static" className={classes.appbar}>
           <Toolbar>
             <Typography variant="title" color="inherit" className={classes.flex}>
                   Setup your avaliable time
@@ -244,7 +244,7 @@ export default class CreateArticle extends PureComponent {
           </Toolbar>
         </AppBar>
 
-        <Card className={classes.root}>
+        <div className={classes.root}>
 
 
           <CardContent>
@@ -286,7 +286,7 @@ export default class CreateArticle extends PureComponent {
               )}
             />
           </CardContent>
-        </Card>
+        </div>
       </Fragment>
     );
   }

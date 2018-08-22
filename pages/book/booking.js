@@ -16,6 +16,7 @@ import Book from '@/view/book';
 import { modalConsumer } from '@/hoc/widthModal';
 import TimetableView from '@/view/timetable/result';
 import pp from '@/hoc/pp';
+import Layout from '@/components/layout';
 
 const styles = theme => ({
   root: {
@@ -72,41 +73,42 @@ export default class Index extends PureComponent {
     const { classes } = this.props;
 
     return (
-      <Mutation mutation={CREATE_TIMETABLE}>
-        {(createTimetable, { loading, error, data = {} }) => {
-          const onSubmit = async () => {
-            const { times, setting } = this.state;
+      <Layout>
+        <Mutation mutation={CREATE_TIMETABLE}>
+          {(createTimetable, { loading, error, data = {} }) => {
+            const onSubmit = async () => {
+              const { times, setting } = this.state;
 
-            const input = {
-              ...setting,
-              times: JSON.stringify(times),
-            };
+              const input = {
+                ...setting,
+                times: JSON.stringify(times),
+              };
 
-            try {
-              const { data } = await createTimetable({
-                variables: { input },
-                refetchQueries: ['TimetableList'],
-              });
+              try {
+                const { data } = await createTimetable({
+                  variables: { input },
+                  refetchQueries: ['TimetableList'],
+                });
 
-              const { modal } = this.props;
+                const { modal } = this.props;
 
-              modal(pp(TimetableView, { timetable: data.item }));
+                modal(pp(TimetableView, { timetable: data.item }));
 
 
               // console.log('result');
               // console.log(result);
               // Router.push('/article');
-            } catch (err) {
-              console.log('err');
-              console.log(err);
+              } catch (err) {
+                console.log('err');
+                console.log(err);
               // Snackbar.error('文章发');
-            }
-          };
+              }
+            };
 
-          return (
-            <Fragment>
+            return (
+              <Fragment>
 
-              <AppBar position="fixed" className={classes.appbar}>
+                <AppBar position="fixed" className={classes.appbar}>
 
                 <Toolbar>
                   <IconButton
@@ -125,7 +127,7 @@ export default class Index extends PureComponent {
                 </Toolbar>
               </AppBar>
 
-              <div className={classes.root}>
+                <div className={classes.root}>
                 <div className={classes.tip}>
                 Click to select the available time period
                 click and drag to select more than one at a time
@@ -145,10 +147,11 @@ export default class Index extends PureComponent {
                 </Card>
               </div>
 
-            </Fragment>
-          );
-        }}
-      </Mutation>
+              </Fragment>
+            );
+          }}
+        </Mutation>
+      </Layout>
     );
   }
 }
