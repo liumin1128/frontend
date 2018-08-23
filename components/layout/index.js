@@ -12,6 +12,9 @@ const styles = theme => ({
     maxWidth: 700,
     margin: '50px auto',
     paddingBottom: 16,
+    [theme.breakpoints.down('xs')]: {
+      margin: 'auto',
+    },
   },
   media: {
     height: 0,
