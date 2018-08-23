@@ -7,20 +7,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import Layout from '@/components/layout';
 
 const styles = theme => ({
-  input: {
-    display: 'none',
-  },
-  card: {
-    maxWidth: 500,
-    margin: '50px auto',
-    paddingBottom: 16,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
   button: {
     // fontSize: 20,
     // marginBottom: 16,
@@ -33,13 +22,8 @@ export default class Index extends PureComponent {
   render() {
     const { classes } = this.props;
     return (
-      <Fragment>
-        <Card className={classes.card}>
-          <CardMedia
-            className={classes.media}
-            image="/static/images/1.jpg"
-            title="Contemplative Reptile"
-          />
+      <Layout>
+        <Fragment>
           <CardContent>
             <Typography gutterBottom variant="headline" component="h2">
               Welcome!
@@ -66,11 +50,9 @@ export default class Index extends PureComponent {
               personal center
               </Button>
             </Link>
-
           </CardActions>
-        </Card>
-      </Fragment>
-
+        </Fragment>
+      </Layout>
     );
   }
 }
