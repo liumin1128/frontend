@@ -2,6 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import { withStyles } from '@material-ui/core/styles';
+import UserInfo from '@/view/me/info';
 
 const styles = theme => ({
   input: {
@@ -16,6 +17,15 @@ const styles = theme => ({
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
+  box: {
+    position: 'relative',
+  },
+  info: {
+    position: 'absolute',
+    bottom: 0,
+    color: '#fff',
+  },
+
   button: {
     background: 'rgba(22,200,200,0.05)',
   },
@@ -28,11 +38,16 @@ export default class Index extends PureComponent {
     return (
       <Fragment>
         <Card className={classes.card}>
-          <CardMedia
-            className={classes.media}
-            image="/static/images/1.jpg"
-            title="Contemplative Reptile"
-          />
+          <div className={classes.box}>
+            <CardMedia
+              className={classes.media}
+              image="/static/images/1.jpg"
+              title="Contemplative Reptile"
+            />
+            <div className={classes.info}>
+              <UserInfo />
+            </div>
+          </div>
           {children}
         </Card>
       </Fragment>
