@@ -35,7 +35,6 @@ const styles = theme => ({
     fontSize: 12,
     color: '#fff',
     border: '1px rgba(255,255,255,0.5) solid',
-    // padding: 2,
     lineHeight: '14px',
     marginLeft: 16,
   },
@@ -93,6 +92,15 @@ export default class ArticleDetail extends PureComponent {
                 <div>
                   <Typography className={classes.p} variant="title" gutterBottom>
                     {user.nickname}
+
+                    <Button
+                      onClick={() => { router.push('/'); }}
+                      className={classes.logout}
+                      variant="outlined"
+                      component="span"
+                    >
+                      Home
+                    </Button>
                     <Button
                       onClick={showModal}
                       className={classes.logout}
@@ -101,6 +109,7 @@ export default class ArticleDetail extends PureComponent {
                     >
                       logout
                     </Button>
+
                   </Typography>
                   <Typography className={classes.p} variant="Subheading" gutterBottom>
                     {user.username}
