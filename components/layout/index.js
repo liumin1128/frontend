@@ -34,7 +34,7 @@ const styles = theme => ({
 @withStyles(styles)
 export default class Index extends PureComponent {
   render() {
-    const { classes, children } = this.props;
+    const { classes, children, noAuth } = this.props;
     return (
       <Fragment>
         <Card className={classes.card}>
@@ -44,9 +44,11 @@ export default class Index extends PureComponent {
               image="/static/images/1.jpg"
               title="Contemplative Reptile"
             />
-            <div className={classes.info}>
-              <UserInfo />
-            </div>
+            {!noAuth && (
+              <div className={classes.info}>
+                <UserInfo />
+              </div>
+            )}
           </div>
           {children}
         </Card>

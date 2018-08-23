@@ -6,6 +6,13 @@ import { USERINFO } from '@/graphql/user';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import { withRouter } from 'next/router';
+import { clearStorage } from '@/utils/store';
+import { modalConsumer } from '@/hoc/widthModal';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const styles = theme => ({
   root: {
@@ -36,16 +43,47 @@ const styles = theme => ({
 
 @connect(({ book }) => ({ book }))
 @withStyles(styles)
+@withRouter
+@modalConsumer
 export default class ArticleDetail extends PureComponent {
   render() {
-    const { classes } = this.props;
+    const { classes, router, modal } = this.props;
+
+    const showModal = () => modal(({ close }) => (
+      <Fragment>
+        <DialogTitle id="alert-dialog-title">
+          确认退出？
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            退出后需要重新登录才可以继续操作
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={close} color="primary">
+            取消
+          </Button>
+          <Button
+            onClick={() => {
+              close();
+              clearStorage();
+              window.location.href = '/';
+            }}
+            color="primary"
+            autoFocus
+          >
+            确认
+          </Button>
+        </DialogActions>
+      </Fragment>
+    ));
 
     return (
       <Query query={USERINFO}>
         {({ loading, error, data = {} }) => {
           const { user = {} } = data;
-          console.log('user');
-          console.log(user);
+          // console.log('user');
+          // console.log(user);
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
           return (
@@ -55,7 +93,12 @@ export default class ArticleDetail extends PureComponent {
                 <div>
                   <Typography className={classes.p} variant="title" gutterBottom>
                     {user.nickname}
-                    <Button className={classes.logout} variant="outlined" component="span">
+                    <Button
+                      onClick={showModal}
+                      className={classes.logout}
+                      variant="outlined"
+                      component="span"
+                    >
                       logout
                     </Button>
                   </Typography>

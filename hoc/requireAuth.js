@@ -5,6 +5,7 @@ import { getStorage, setStorage } from '@/utils/store';
 import { STORE_USER_KEY, PATH_BEFORLOGIN } from '@/constants/base';
 import Button from '@material-ui/core/Button';
 import Layout from '@/components/layout';
+import Typography from '@material-ui/core/Typography';
 import nossr from './nossr';
 
 
@@ -48,8 +49,12 @@ export default class Auth extends PureComponent {
 
       return (
         <Fragment>
-          <Layout>
-            <div style={{ padding: 50 }}>
+          <Layout noAuth>
+            <div style={{ padding: 24 }}>
+              <Typography style={{ color: '#999' }} variant="Subheading" gutterBottom>
+                尚未登录，请点击登录再进行操作...
+              </Typography>
+              <br />
               <a href="http://localhost:3101/oauth/outlook">
                 <Button color="primary" size="large">
                   Login
