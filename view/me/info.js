@@ -6,6 +6,7 @@ import { USERINFO } from '@/graphql/user';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import { withRouter } from 'next/router';
 import { clearStorage } from '@/utils/store';
 import { modalConsumer } from '@/hoc/widthModal';
@@ -88,7 +89,9 @@ export default class ArticleDetail extends PureComponent {
           return (
             <Fragment>
               <div className={classes.root}>
-                <Avatar className={classes.avatar} src="/static/images/avatar.jpeg" />
+                <ButtonBase>
+                  <Avatar onClick={() => { router.push('/me'); }} className={classes.avatar} src="/static/images/avatar.jpeg" />
+                </ButtonBase>
                 <div>
                   <Typography className={classes.p} variant="title" gutterBottom>
                     {user.nickname}
