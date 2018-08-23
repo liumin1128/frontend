@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Router from 'next/router';
+import Layout from '@/components/layout';
 
 const styles = theme => ({
   input: {
@@ -71,13 +72,8 @@ export default class Index extends PureComponent {
   render() {
     const { classes } = this.props;
     return (
-      <Fragment>
-        <Card className={classes.card}>
-          <CardMedia
-            className={classes.media}
-            image="/static/images/1.jpg"
-            title="Contemplative Reptile"
-          />
+      <Layout>
+        <Fragment>
           <CardContent>
             <TextField
               // defaultValue=""
@@ -113,9 +109,8 @@ export default class Index extends PureComponent {
               加入活动
             </Button>
           </CardActions>
-        </Card>
-      </Fragment>
-
+        </Fragment>
+      </Layout>
     );
   }
 }

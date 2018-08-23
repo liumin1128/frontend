@@ -14,11 +14,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { modalConsumer } from '@/hoc/widthModal';
 import Form from '@/view/availableTime/createBook';
+import Layout from '@/components/layout';
+
 
 const styles = theme => ({
   root: {
     maxWidth: 700,
-    margin: '92px auto 32px',
+    margin: '0px auto 0px',
   },
   appbar: {
   },
@@ -54,85 +56,85 @@ export default class Index extends PureComponent {
     const { classes } = this.props;
 
     return (
-      <Mutation mutation={CREATE_BOOK}>
-        {(createBook, { loading, error, data = {} }) => {
-          const onSubmit = async (values) => {
-            const { ibooktimes, router } = this.props;
+      <Layout>
+        <Mutation mutation={CREATE_BOOK}>
+          {(createBook, { loading, error, data = {} }) => {
+            const onSubmit = async (values) => {
+              const { ibooktimes, router } = this.props;
 
 
-            const input = {
-              ...values,
-              timetable: router.query._id,
-              times: JSON.stringify(ibooktimes),
+              const input = {
+                ...values,
+                timetable: router.query._id,
+                times: JSON.stringify(ibooktimes),
+              };
+
+              console.log(input);
+
+
+              try {
+                const { data } = await createBook({
+                  variables: { input },
+                  refetchQueries: ['TimetableList'],
+                });
+
+                const { modal } = this.props;
+
+
+                console.log('data');
+                console.log(data);
+
+                modal(() => (
+                  <Card className={classes.card}>
+                    <CardContent>
+                      <Typography gutterBottom variant="headline" component="h2">
+                      your meeting is booked！The confirmation email has been sent ！
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                ));
+              } catch (err) {
+                console.log('err');
+                console.log(err);
+              }
             };
 
-            console.log(input);
+            const { router } = this.props;
 
+            return (
+              <Fragment>
 
-            try {
-              const { data } = await createBook({
-                variables: { input },
-                refetchQueries: ['TimetableList'],
-              });
+                <AppBar position="static" className={classes.appbar}>
 
-              const { modal } = this.props;
-
-
-              console.log('data');
-              console.log(data);
-
-              modal(() => (
-                <Card className={classes.card}>
-                  <CardContent>
-                    <Typography gutterBottom variant="headline" component="h2">
-                      your meeting is booked！The confirmation email has been sent ！
-                    </Typography>
-                  </CardContent>
-                </Card>
-              ));
-            } catch (err) {
-              console.log('err');
-              console.log(err);
-            }
-          };
-
-          const { router } = this.props;
-
-          return (
-            <Fragment>
-
-              <AppBar position="fixed" className={classes.appbar}>
-
-                <Toolbar>
-                  <IconButton
-                    className={classes.menuButton}
-                    color="inherit"
-                    aria-label="Menu"
-                    onClick={() => {
-                      Router.push(`/timetable/detail?_id=${router.query._id}`);
-                    }}
-                  >
-                    <ArrowBackIcon />
-                  </IconButton>
-                  <Typography variant="title" color="inherit" className={classes.flex}>
+                  <Toolbar>
+                    <IconButton
+                      className={classes.menuButton}
+                      color="inherit"
+                      aria-label="Menu"
+                      onClick={() => {
+                        Router.push(`/timetable/detail?_id=${router.query._id}`);
+                      }}
+                    >
+                      <ArrowBackIcon />
+                    </IconButton>
+                    <Typography variant="title" color="inherit" className={classes.flex}>
                     choose your availableTime
-                  </Typography>
-                </Toolbar>
-              </AppBar>
+                    </Typography>
+                  </Toolbar>
+                </AppBar>
 
-              <div className={classes.root}>
+                <div className={classes.root}>
 
-                <Card>
                   <CardContent>
                     <Form onSubmit={onSubmit} />
                   </CardContent>
-                </Card>
-              </div>
+                </div>
 
-            </Fragment>
-          );
-        }}
-      </Mutation>
+              </Fragment>
+            );
+          }}
+        </Mutation>
+      </Layout>
     );
   }
 }
