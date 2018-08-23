@@ -99,7 +99,7 @@ export default class Index extends PureComponent {
             <Button
               onClick={() => {
                 console.log(this.input.value);
-                Router.push(`http://localhost:8000/timetable/detail?_id${this.input.value}`);
+                Router.push(`http://localhost:8000/timetable/detail?_id=${this.input.value}`);
               }}
               raised
               className={classes.button}
