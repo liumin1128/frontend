@@ -12,6 +12,7 @@ const styles = theme => ({
     padding: 16,
     color: '#fff',
     display: 'flex',
+    background: 'rgba(0,0,0,0.5)',
   },
   avatar: {
     width: 60,
