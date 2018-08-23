@@ -39,9 +39,6 @@ export default class Index extends PureComponent {
           <p />
         </CardContent>
         <CardActions>
-          <Button size="small" color="primary">
-            Close
-          </Button>
 
           <CopyToClipboard
             text={url}
