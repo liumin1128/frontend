@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Me from '@/view/me';
+import Layout from '@/components/layout';
 
 const styles = theme => ({
   input: {
@@ -35,17 +36,10 @@ export default class Index extends PureComponent {
     const { classes } = this.props;
     return (
       <Fragment>
-        <Card className={classes.card}>
-          <CardMedia
-            className={classes.media}
-            image="/static/images/1.jpg"
-            title="Contemplative Reptile"
-          />
-
+        <Layout>
           <Me />
-        </Card>
+        </Layout>
       </Fragment>
-
     );
   }
 }
