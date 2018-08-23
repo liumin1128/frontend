@@ -2,13 +2,14 @@ import React, { PureComponent } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import TimetableDetail from '@/view/timetable/detail';
+import Layout from '@/components/layout';
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
     maxWidth: 1110,
     margin: 'auto',
-    marginTop: theme.spacing.unit * 3,
+    padding: 0,
   },
   body: {
     maxWidth: 760,
@@ -38,17 +39,17 @@ export default class News extends PureComponent {
     // console.log('query');
     // console.log(query);
     return (
-      <div className={classes.root}>
+      <Layout>
         <div className={classes.root}>
-          <Grid className={classes.container} container spacing={16}>
-            <Grid item xs={12} sm={12} md={12}>
-              <div className={classes.body}>
-                <TimetableDetail query={query} />
-              </div>
-            </Grid>
-          </Grid>
+          <div className={classes.root}>
+
+            <div className={classes.body}>
+              <TimetableDetail query={query} />
+            </div>
+
+          </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 }

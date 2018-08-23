@@ -18,7 +18,7 @@ import Book from '../book/book';
 const styles = theme => ({
   root: {
     maxWidth: 700,
-    margin: '92px auto 32px',
+    margin: '0px auto 0px',
   },
   submitButton: {
     marginTop: 16,
@@ -46,7 +46,7 @@ export default class ArticleDetail extends PureComponent {
           if (error) return `Error! ${error.message}`;
           return (
             <Fragment>
-              <AppBar position="fixed" className={classes.appbar}>
+              <AppBar position="static" className={classes.appbar}>
 
                 <Toolbar>
                   <IconButton
@@ -67,10 +67,8 @@ export default class ArticleDetail extends PureComponent {
 
               <div className={classes.root}>
 
-                <Card>
+                <div>
                   <CardContent>
-                    <br />
-
                     <Typography variant="title" color="inherit" className={classes.flex}>
                      meeting title:
                       {timetable.title}
@@ -109,7 +107,7 @@ export default class ArticleDetail extends PureComponent {
                       submit
                     </Button>
                   </CardContent>
-                </Card>
+                </div>
               </div>
 
 
