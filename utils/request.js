@@ -6,7 +6,7 @@ import { getStorage } from './store';
 es6promise.polyfill();
 
 const instance = axios.create({
-  baseURL: 'https://api.react.mobi',
+  baseURL: 'https://api.mengmengliu.me',
   method: 'POST',
   timeout: 6000,
 });
@@ -28,7 +28,7 @@ instance.interceptors.response.use(undefined, (err) => {
 });
 
 export default (url, data, options) => {
-  const token = getStorage('react.mobi.token');
+  const token = getStorage('mengmengliu.me.token');
   return instance({
     method: 'POST',
     headers: {

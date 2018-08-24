@@ -60,7 +60,7 @@ function create(initialState) {
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     // link: new HttpLink({
-    //   uri: 'https://api.react.mobi/graphql', // Server URL (must be absolute)
+    //   uri: 'https://api.mengmengliu.me/graphql', // Server URL (must be absolute)
     //   credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
     // }),
     link: ApolloLink.from([

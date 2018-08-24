@@ -1,5 +1,5 @@
-PRO_DIR="../react.mobi"
-GIT_URL="https://github.com/liumin1128/react.mobi.git"
+PRO_DIR="../mengmengliu.me"
+GIT_URL="https://github.com/liumin1128/mengmengliu.me.git"
 pwd
 
 # echo "切换到Node 版本：8.8.1"
@@ -10,7 +10,7 @@ pwd
 # node -v
 
 # echo "关闭pm2"
-# pm2 delete react.mobi
+# pm2 delete mengmengliu.me
 
 echo "进入项目目录"
 pwd

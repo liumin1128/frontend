@@ -1,7 +1,7 @@
 {
     "apps": [
       {
-        "name": "react.mobi",
+        "name": "mengmengliu.me",
         "script": "server.js",
         "log_date_format": "YYYY-MM-DD HH:mm Z",
         "cron_restart": "0 4 * * *",
