@@ -39,8 +39,4 @@ export default {
       console.log(error);
     }
   },
-  'common/getQiniuToken': async ({ payload, cb }, { getState, dispatch }) => {
-    const { token } = await request('common/getQiniuToken');
-    await dispatch({ type: 'common/save', payload: { qiniuToken: token } });
-  },
 };
