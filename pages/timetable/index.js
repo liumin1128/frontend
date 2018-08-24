@@ -77,7 +77,7 @@ export default class Index extends PureComponent {
           <CardContent>
             <TextField
               // defaultValue=""
-              label="请输入邀请码"
+              label="Please enter the invitation code"
               id="bootstrap-input"
               InputProps={{
                 disableUnderline: true,
@@ -106,7 +106,7 @@ export default class Index extends PureComponent {
               size="large"
               color="primary"
             >
-              加入活动
+              book meeting
             </Button>
           </CardActions>
         </Fragment>

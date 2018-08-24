@@ -52,7 +52,7 @@ export default class Auth extends PureComponent {
           <Layout noAuth>
             <div style={{ padding: 24 }}>
               <Typography style={{ color: '#999' }} variant="Subheading" gutterBottom>
-                尚未登录，请点击登录再进行操作...
+              Not logged in, please click login to proceed...
               </Typography>
               <br />
               <a href="http://localhost:3101/oauth/outlook">
