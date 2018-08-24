@@ -54,16 +54,16 @@ export default class BookList extends PureComponent {
                 const showModal = id => modal(({ close }) => (
                   <Fragment>
                     <DialogTitle id="alert-dialog-title">
-                      取消本次活动？
+                      do you want to cancel this booking？
                     </DialogTitle>
                     <DialogContent>
                       <DialogContentText id="alert-dialog-description">
-                        是否删除
+                        delete
                       </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                       <Button onClick={close} color="primary">
-                        取消
+                        cancel
                       </Button>
                       <Button
                         onClick={() => {
@@ -73,7 +73,7 @@ export default class BookList extends PureComponent {
                         color="primary"
                         autoFocus
                       >
-                        确认
+                        delete booking
                       </Button>
                     </DialogActions>
                   </Fragment>
@@ -88,7 +88,7 @@ export default class BookList extends PureComponent {
                               <ImageIcon />
                             </Avatar>
                             <ListItemText
-                              primary={`已参加：${i.timetable.title}`}
+                              primary={`i booked the meeting：${i.timetable.title}`}
                               secondary={moment(i.createdAt).format('llll')}
                             />
                           </ListItem>

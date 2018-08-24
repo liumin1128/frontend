@@ -52,16 +52,16 @@ export default class ArticleDetail extends PureComponent {
     const showModal = () => modal(({ close }) => (
       <Fragment>
         <DialogTitle id="alert-dialog-title">
-          确认退出？
+          do you want to login out?
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            退出后需要重新登录才可以继续操作
+          You need to login again to continue after exiting
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={close} color="primary">
-            取消
+            cancell
           </Button>
           <Button
             onClick={() => {
@@ -72,7 +72,7 @@ export default class ArticleDetail extends PureComponent {
             color="primary"
             autoFocus
           >
-            确认
+            log out
           </Button>
         </DialogActions>
       </Fragment>

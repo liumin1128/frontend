@@ -45,8 +45,8 @@ class SimpleTabs extends PureComponent {
       <div className={classes.root}>
         <AppBar position="static">
           <Tabs value={value} onChange={this.handleChange}>
-            <Tab label="我发布的" />
-            <Tab label="我预约的" />
+            <Tab label="my meeting scheduler"/>
+            <Tab label="the meeting I booked "/>
           </Tabs>
         </AppBar>
         {value === 0 && <TimetableList />}
