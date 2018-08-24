@@ -3,7 +3,7 @@
 # DATA=$(date +%y%m%d)
 
 SERVER="root@47.94.150.105"
-DIR="/root/Axonfo.com/.next"
+DIR="/root/mengmengliu.me/.next"
 LOCAL_DIR=".next"
 
 # FILELIST=$(git diff --name-only HEAD~ HEAD)
