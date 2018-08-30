@@ -96,7 +96,7 @@ function create(initialState) {
         cache,
       }),
       new HttpLink({
-        uri: 'http://api.mengmengliu.me/graphql', // Server URL (must be absolute)
+        uri: 'https://api.mengmengliu.me/graphql', // Server URL (must be absolute)
         credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       }),
     ]),

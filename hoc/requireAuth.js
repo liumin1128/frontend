@@ -55,7 +55,7 @@ export default class Auth extends PureComponent {
               Not logged in, please click login to proceed...
               </Typography>
               <br />
-              <a href="http://api.mengmengliu.me/oauth/outlook">
+              <a href="https://api.mengmengliu.me/oauth/outlook">
                 <Button color="primary" size="large">
                   Login
                 </Button>
