@@ -54,16 +54,16 @@ export default class TimetableList extends PureComponent {
                 const showModal = id => modal(({ close }) => (
                   <Fragment>
                     <DialogTitle id="alert-dialog-title">
-                      取消本次活动？
+                      do you what to cancel this booking？
                     </DialogTitle>
                     <DialogContent>
                       <DialogContentText id="alert-dialog-description">
-                        是否删除
+                        if cancel the meeting
                       </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                       <Button onClick={close} color="primary">
-                        取消
+                        no
                       </Button>
                       <Button
                         onClick={() => {
@@ -73,7 +73,7 @@ export default class TimetableList extends PureComponent {
                         color="primary"
                         autoFocus
                       >
-                        确认
+                        yes
                       </Button>
                     </DialogActions>
                   </Fragment>
