@@ -16,7 +16,7 @@ export default class Index extends PureComponent {
   render() {
     const { classes, timetable } = this.props;
 
-    const url = `http://localhost:8000/timetable/detail?_id=${timetable._id}`;
+    const url = `http://mengmengliu.me/timetable/detail?_id=${timetable._id}`;
 
 
     return (
@@ -32,7 +32,7 @@ export default class Index extends PureComponent {
             】 has been created successfully! Please share the following address with your friends:
           </Typography>
           <Typography component="p">
-            <pre style={{ padding: 16, background: 'rgba(0,0,0,0.05)' }} href="http://localhost:8000">
+            <pre style={{ padding: 16, background: 'rgba(0,0,0,0.05)' }} href="http://mengmengliu.me">
               {url}
             </pre>
           </Typography>

@@ -23,16 +23,6 @@ app.prepare()
     // Use the `renderAndCache` utility defined below to serve pages
     [
       '/',
-      '/say',
-      '/say/detail',
-      '/article',
-      '/article/detail',
-      '/bxgif',
-      '/bxgif/detail',
-      '/mzitu',
-      '/mzitu/detail',
-      '/meizitu',
-      '/meizitu/detail',
     ].map((i) => {
       return server.get(i, (req, res) => {
         renderAndCache(req, res, i, req.query);

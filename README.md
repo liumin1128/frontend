@@ -73,7 +73,7 @@ ui框架用的material-ui
 ### 用户登录
 
 创建全局组件requireAuth，对所有页面进行检测（排除login/oauth页面），判断用户是否登录，如果尚未登录，则要求用户先登录。
-登录逻辑由后端操控，url转跳至http://localhost:3101/oauth/outlook即可
+登录逻辑由后端操控，url转跳至http://api.mengmengliu.me/oauth/outlook即可
 
 ```
   if (router.pathname === '/login/oauth') {
@@ -89,7 +89,7 @@ ui框架用的material-ui
       <Fragment>
         <div style={{ padding: 50 }}>
           请先
-          <a href="http://localhost:3101/oauth/outlook">
+          <a href="http://api.mengmengliu.me/oauth/outlook">
             登录
           </a>
         </div>
