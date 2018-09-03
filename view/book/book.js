@@ -98,21 +98,21 @@ export default class Index extends PureComponent {
       // 如果前面两个被连续预订，则无法预订
       if (values[day].findIndex(i => i === (idx - 1)) !== -1
         && values[day].findIndex(i => i === (idx - 2)) !== -1) {
-        Snackbar.error('无法连续预订3个以上的时间点');
+        Snackbar.error('cannot schedule more than three consecutive times');
         return;
       }
 
       // 如果前面和后面被预订，则无法预订
       if (values[day].findIndex(i => i === (idx - 1)) !== -1
         && values[day].findIndex(i => i === (idx + 1)) !== -1) {
-        Snackbar.error('无法连续预订3个以上的时间点');
+        Snackbar.error('cannot schedule more than three consecutive times');
         return;
       }
 
       // 如果后面两个被连续预订，则无法预订
       if (values[day].findIndex(i => i === (idx + 1)) !== -1
         && values[day].findIndex(i => i === (idx + 2)) !== -1) {
-        Snackbar.error('无法连续预订3个以上的时间点');
+        Snackbar.error('cannot schedule more than three consecutive times');
         return;
       }
 
