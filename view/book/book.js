@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { withStyles } from '@material-ui/core/styles';
+import Snackbar from '@/components/snackbar';
 
 
 /* eslint-disable no-case-declarations */
@@ -93,8 +94,15 @@ export default class Index extends PureComponent {
       if (!values[day]) {
         values[day] = [];
       }
+
+      // 如果前面两个被连续预订，则无法预订
+      if (values[day].findIndex(i => i === (idx - 1)) !== -1
+        && values[day].findIndex(i => i === (idx - 2)) !== -1) {
+        Snackbar.error('无法连续预订3个以上的时间点');
+        return;
+      }
+
       const index = values[day].findIndex(i => i > idx);
-      // console.log(index);
       if (index === -1) {
         values[day].push(idx);
       } else {

@@ -94,7 +94,7 @@ export default class ArticleDetail extends PureComponent {
                 </ButtonBase>
                 <div>
                   <Typography className={classes.p} variant="title" gutterBottom>
-                    {user.nickname}
+                    {user && user.nickname}
 
                     <Button
                       onClick={() => { router.push('/'); }}
@@ -115,7 +115,7 @@ export default class ArticleDetail extends PureComponent {
 
                   </Typography>
                   <Typography className={classes.p} variant="Subheading" gutterBottom>
-                    {user.username}
+                    {user && user.username}
                   </Typography>
                 </div>
               </div>
