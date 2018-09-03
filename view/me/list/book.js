@@ -88,7 +88,7 @@ export default class BookList extends PureComponent {
                               <ImageIcon />
                             </Avatar>
                             <ListItemText
-                              primary={`i booked the meeting：${i.timetable ? i.timetable.title : '活动已删除'}`}
+                              primary={`i booked the meeting：${i.timetable ? i.timetable.title : 'the meeting has been cancelled'}`}
                               secondary={moment(i.createdAt).format('llll')}
                             />
                           </ListItem>
